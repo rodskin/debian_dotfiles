@@ -1,0 +1,5 @@
+alias ll="ls -alh"
+alias vi="nvim"
+alias ga='git add'
+alias gc='git commit'
+alias gp='git push'

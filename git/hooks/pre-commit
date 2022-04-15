@@ -1,0 +1,15 @@
+#!/bin/bash
+source ~/.dotfiles/colors.sh
+git diff --cached --name-only | while read FILE; do
+    # check des erreurs en PHP
+    if [[ "$FILE" =~ ^.+(php|inc|module|install|test)$ ]]; then
+        # Courtesy of swytsh from the comments below.
+        if [[ -f $FILE ]]; then
+            php -l "$FILE" 1> /dev/null
+            if [ $? -ne 0 ]; then
+                echo -e "${red}\tAborting commit due to files with syntax errors.${default}" >&2
+                exit 1
+            fi
+        fi
+    fi
+done || exit $?
