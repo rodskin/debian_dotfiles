@@ -31,6 +31,11 @@ ln -sf "$DOTFILES/zsh/aliases" "$XDG_CONFIG_HOME/zsh/aliases"
 rm -rf "$XDG_CONFIG_HOME/zsh/external"
 ln -sf "$DOTFILES/zsh/external" "$XDG_CONFIG_HOME/zsh"
 
+#######
+# Git #
+#######
+ln -sf "$DOTFILES/git/.gitconfig" "$HOME/.gitconfig"
+
 #########
 # Fonts #
 #########
