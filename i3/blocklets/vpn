@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+local icon=$icon_vpn_off
+  vpn_status=`sudo wg`
+  if [ ! -z "$vpn_status" ]; then
+    bg=$bg_vpn
+    icon=$icon_vpn_on
+  fi

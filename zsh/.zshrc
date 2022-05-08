@@ -44,4 +44,5 @@ fi
 
 source $DOTFILES/zsh/scripts.sh
 
+eval $(thefuck --alias)
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

@@ -1,5 +1,7 @@
 alias ll="ls -alh"
 alias vi="nvim"
+alias git="git -c color.ui=auto"
 alias ga='git add'
 alias gc='git commit'
 alias gp='git push'
+alias gs="git status --short"

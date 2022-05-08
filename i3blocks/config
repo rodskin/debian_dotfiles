@@ -33,18 +33,18 @@ align=right
 # RAM usage
 [memory]
 interval=1
-label= 
+label=
 color=#4CAF50
 
 # CPU Usage
 [cpu_usage]
-label= 
+label=
 interval=2
 color=#87AFAF
 
 # /home Partition Usage
 [disk-home]
-label=:
+label=
 interval=30
 color=#586E75
 
@@ -52,22 +52,26 @@ color=#586E75
 [iface]
 color=#B4B7B4
 interval=1
-label= 
+label=
 
 # Wi-Fi SSID
 [ssid]
-label= w:
-color=#d33682
+label=
 interval=2
 
+# Bluetooth
+[bluetooth]
+label=
+interval=5
+
 #Network Bandwidth
-[bandwidth]
-interval=1
-color=#d33682
+#[bandwidth]
+#interval=1
+#color=#d33682
 
 # Screen brightness
 [brightness]
-label= 
+label=
 interval=1
 signal=2
 color=#738899
@@ -78,7 +82,7 @@ interval=10
 
 # Date and Time Calendar
 [time]
-label= 
+label=
 interval=1
 color=#50C878
 

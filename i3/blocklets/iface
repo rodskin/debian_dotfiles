@@ -61,5 +61,4 @@ esac
 
 #------------------------------------------------------------------------
 
-echo "$IPADDR" # full text
-echo "$IPADDR" # short text
+echo "<span background=\"#2E7D32\" foreground=\"white\">  $IPADDR </span>" # full text

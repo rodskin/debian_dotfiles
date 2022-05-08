@@ -18,3 +18,4 @@ export HISTFILE="$ZDOTDIR/.zhistory"
 # Maximum events for internal history
 export SAVEHIST=10000
 
+export PATH="$HOME/.local/bin:$PATH"
