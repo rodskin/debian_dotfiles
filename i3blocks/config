@@ -65,9 +65,9 @@ label=
 interval=2
 
 # VPN
-#[vpn]
-#label=
-#interval=5
+[vpn]
+label=
+interval=5
 
 # Bluetooth
 [bluetooth]
@@ -86,10 +86,6 @@ interval=1
 signal=2
 color=#738899
 
-# Battery level
-[battery]
-interval=10
-
 # Date and Time Calendar
 [volume]
 label=
@@ -100,6 +96,10 @@ interval=1
 label=
 interval=1
 color=#50C878
+
+# Battery level
+[battery]
+interval=10
 
 # Battery level notification
 [batnotify]
