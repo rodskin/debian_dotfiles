@@ -15,6 +15,6 @@
 	name = fgilles
 	email = fgilles@corp.free.fr
 [core]
-	excludesfile = ~/.dotfiles/git/.gitignore
-	hooksPath = ~/.dotfiles/git/hooks
+	excludesfile = ~/dotfiles/git/.gitignore
+	hooksPath = ~/dotfiles/git/hooks
     pager = "diff-so-fancy | less --tabs=4 -RFX"

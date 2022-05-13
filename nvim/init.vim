@@ -1,12 +1,5 @@
-" Plugins
-call plug#begin("$XDG_CONFIG_HOME/nvim/plugged")
-    Plug 'chrisbra/csv.vim'
-    Plug 'moll/vim-bbye'
-    Plug 'simeji/winresizer'
-    Plug 'junegunn/fzf'
-    Plug 'junegunn/fzf.vim'
-    Plug 'simnalamburt/vim-mundo'
-call plug#end()
+source ~/dotfiles/nvim/myplugins.vim
+source ~/dotfiles/nvim/mytheme.vim
 
 set clipboard+=unnamedplus
 
@@ -55,3 +48,14 @@ augroup END
 
 " Config for fzf.vim (BONUS :D)
 nnoremap <leader>f :Files<cr>
+"
+" NerdTree
+"map <C-n> :NERDTreeToggle<CR>
+nmap <silent> <F2> :NERDTreeToggle<CR>
+let g:NERDTreeShowHidden=1
+
+" Tagbar
+nmap <F8> :TagbarToggle<CR>
+
+" Hide buffer
+set hidden

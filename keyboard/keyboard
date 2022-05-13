@@ -1,0 +1,9 @@
+# KEYBOARD CONFIGURATION FILE
+
+# Consult the keyboard(5) manual page.
+
+XKBMODEL="tm2030USB"
+XKBLAYOUT="us"
+XKBVARIANT="altgr-intl"
+XKBOPTIONS=""
+BACKSPACE="guess"

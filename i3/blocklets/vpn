@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
-local icon=$icon_vpn_off
-  vpn_status=`sudo wg`
-  if [ ! -z "$vpn_status" ]; then
-    bg=$bg_vpn
-    icon=$icon_vpn_on
-  fi
+ICON=""
+BG_COLOR=""
+vpn_status=`sudo wg`
+if [ ! -z "$vpn_status" ]; then
+    COLOR=' foreground="#E53935"'
+    ICON=""
+else
+    ICON="toto"
+fi
+echo "<span$COLOR>$ICON VPN</span>"

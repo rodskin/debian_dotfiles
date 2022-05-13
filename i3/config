@@ -39,6 +39,15 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
+# open calculator
+bindsym XF86Calculator exec gnome-calculator
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPause exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next && $refresh_i3status
+bindsym XF86AudioPrev exec playerctl previous && $refresh_i3status
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -108,15 +117,15 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $terms "1"
-set $nvim "2"
-set $browsers "3"
-set $tchat "4"
-set $db "5"
-set $music "6"
-set $ws7 "7"
-set $ws8 "8"
-set $chrome "9"
+set $terms "1: "
+set $nvim "2: "
+set $browsers "3: "
+set $tchat "4: "
+set $db "5: "
+set $music "6: "
+set $ws7 "7: "
+set $ws8 "8: "
+set $chrome "9: "
 set $ws10 "10"
 
 # switch to workspace
@@ -204,7 +213,8 @@ mode "$mode_system" {
 bindsym $mod+BackSpace mode "$mode_system"
 
 # wallpaper
-exec --no-startup-id feh --no-fehbg --bg-fill ~/.config/i3/feh/wallpaper.jpg
+#exec --no-startup-id feh --no-fehbg --bg-fill ~/dotfiles/i3/feh/wallpaper.jpg
+exec_always feh --bg-scale $HOME/dotfiles/i3/feh/wallpaper.jpg
 
 # floating pop up automatically
 for_window [window_role="pop-up"] floating enable
@@ -231,9 +241,10 @@ bindsym $mod+Shift+p [instance="htop_scratchpad"] scratchpad show
 exec urxvtc -name htop_scratchpad -e htop
 
 # Screen management
-set $mode_display Config monitor resolution - Default config (d)
+set $mode_display Config monitor resolution - Default config (d), Work (w)
 mode "$mode_display" {
     bindsym d exec --no-startup-id sh "$HOME/.config/X11/default.sh", mode "default"
+    bindsym w exec --no-startup-id sh "$HOME/.config/X11/work.sh", mode "default"
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"

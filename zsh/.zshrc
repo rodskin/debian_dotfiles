@@ -42,6 +42,10 @@ then
     pgrep i3 || exec startx "$XDG_CONFIG_HOME/X11/.xinitrc"
 fi
 
+bindkey -r '^l'
+bindkey -r '^g'
+bindkey -s '^g' 'clear^M'
+
 source $DOTFILES/zsh/scripts.sh
 
 eval $(thefuck --alias)
