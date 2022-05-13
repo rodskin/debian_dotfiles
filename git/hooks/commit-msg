@@ -1,5 +1,5 @@
 #!/bin/bash
-source ~/.dotfiles/colors.sh
+source ~/dotfiles/colors.sh
 ASPELL=$(which aspell)
 if [ $? -ne 0 ]; then
     echo -e "${red}Aspell not installed - unable to check spelling${default}" >&2

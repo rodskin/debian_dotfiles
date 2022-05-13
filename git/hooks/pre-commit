@@ -1,5 +1,5 @@
 #!/bin/bash
-source ~/.dotfiles/colors.sh
+source ~/dotfiles/colors.sh
 git diff --cached --name-only | while read FILE; do
     # check des erreurs en PHP
     if [[ "$FILE" =~ ^.+(php|inc|module|install|test)$ ]]; then
