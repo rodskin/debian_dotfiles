@@ -48,6 +48,11 @@ label=
 interval=30
 color=#586E75
 
+# IP OUT
+[ifaceout]
+interval=5
+label=
+
 # Network Interface IP
 [iface]
 color=#B4B7B4
