@@ -30,6 +30,11 @@ separator_block_width= 10
 markup=pango
 align=right
 
+# Epic
+[epic]
+interval=1800
+label=
+
 # RAM usage
 [memory]
 interval=1
@@ -90,6 +95,11 @@ color=#738899
 [volume]
 label=
 interval=1
+
+# Meteo
+[meteo]
+label=
+interval=1800
 
 # Date and Time Calendar
 [time]

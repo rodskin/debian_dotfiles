@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+if [ ! -z "$BLOCK_BUTTON" ]; then
+    bash $DOTFILES/i3/scripts/epic_add_game_and_open.sh
+fi
+ICON=""
+EPIC=`python3 $DOTFILES/i3/scripts/epic.py`
+if [ ! -z "$EPIC" ]; then
+    COLOR=' foreground="#A504D1"'
+fi
+echo "<span$COLOR>$ICON $EPIC</span>"
