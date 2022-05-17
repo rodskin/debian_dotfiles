@@ -48,4 +48,5 @@ alias vup="sudo wg-quick up ~/vpn/dbpn.conf"
 alias vdn="sudo wg-quick down ~/vpn/dbpn.conf"
 
 
+alias devp="cd ~/dev/php/free"
 source $HOME/dotfiles/zsh/functions

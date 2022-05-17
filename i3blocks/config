@@ -95,7 +95,11 @@ interval=1
 [time]
 label=
 interval=1
-color=#50C878
+
+# packages updates
+[updates]
+label=
+interval=3600
 
 # Battery level
 [battery]

@@ -1,5 +1,5 @@
-source ~/dotfiles/nvim/myplugins.vim
-source ~/dotfiles/nvim/mytheme.vim
+source ~/dotfiles/nvim/plugins.vim
+source ~/dotfiles/nvim/theme.vim
 
 set clipboard+=unnamedplus
 
@@ -59,3 +59,9 @@ nmap <F8> :TagbarToggle<CR>
 
 " Hide buffer
 set hidden
+
+set showmatch " show matching brackets/parenthesis
+" ensure we always use this encoding for every
+" file
+set encoding=UTF-8
+set fileencoding=UTF-8
