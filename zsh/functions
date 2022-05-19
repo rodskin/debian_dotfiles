@@ -46,6 +46,11 @@ function extract()  	# Handy Extract Program
 	fi
 }
 
+function manga()
+{
+    /bin/bash $HOME/manga_scans/get_manga $1
+}
+
 # Creates an archive (*.tar.gz) from given directory.
 function maketar() { tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; }
 

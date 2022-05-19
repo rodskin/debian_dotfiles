@@ -11,6 +11,11 @@ call plug#begin("$XDG_CONFIG_HOME/nvim/plugged")
     Plug 'preservim/tagbar'
     Plug 'tpope/vim-fugitive'
     Plug 'dracula/vim', { 'as': 'dracula' }
+    "Plug 'ycm-core/YouCompleteMe' " NOT WORKING ?
+    Plug 'ryanoasis/vim-devicons'
+    Plug 'itchyny/lightline.vim'
+    Plug 'powerline/fonts'
+    Plug 'chrisbra/SudoEdit.vim'
 call plug#end()
 
 "Plug 'sjl/gundo.vim'
@@ -35,9 +40,6 @@ call plug#end()
 "Plug 'ap/vim-css-color'
 "Plug 'tpope/vim-surround'
 
-" Plug 'ycm-core/YouCompleteMe'
-"Plug 'ryanoasis/vim-devicons'
-"Plug 'powerline/fonts'
 
 " PHP Plugins
 "Plug 'StanAngeloff/php.vim'
@@ -71,4 +73,4 @@ call plug#end()
 "Plug 'neovim/nvim-lspconfig'
 "Plug 'williamboman/nvim-lsp-installer'
 "Plug 'jobo3208/nvim-mysql'
-Plug 'vim-scripts/dbext.vim'
+"Plug 'vim-scripts/dbext.vim'

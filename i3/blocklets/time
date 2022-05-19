@@ -33,7 +33,6 @@ fi
 echo "<span$COLOR>$CALENDAR_STRING</span>"
 
 #Buttons Control
-case "$BLOCK_BUTTON" in
-    1) exec rxvt --hold -e ~/old_pc/fgilles/.dotfiles/i3status/click_time.sh &
-        ;;
-esac
+if [ ! -z "$BLOCK_BUTTON" ]; then
+    rxvt --hold -e ~/old_pc/fgilles/.dotfiles/i3status/click_time.sh &
+fi
