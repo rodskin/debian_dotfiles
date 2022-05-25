@@ -19,3 +19,4 @@ export HISTFILE="$ZDOTDIR/.zhistory"
 export SAVEHIST=10000
 
 export PATH="$HOME/.local/bin:$PATH"
+

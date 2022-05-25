@@ -2,7 +2,7 @@
 ############
 # KEYBOARD #
 ############
-sudo cp "$DOTFILES/keyboard/keyboard"/etc/default/keyboard
+sudo cp "$DOTFILES/keyboard/keyboard" /etc/default/keyboard
 
 ########
 # nvim #
@@ -69,3 +69,8 @@ ln -sf "$DOTFILES/dunst/dunstrc" "$XDG_CONFIG_HOME/dunst/dunstrc"
 ########
 mkdir -p "$XDG_CONFIG_HOME/tmux"
 ln -sf "$DOTFILES/tmux/tmux.conf" "$XDG_CONFIG_HOME/tmux/tmux.conf"
+
+#########
+# Scrot #
+#########
+mkdir -p "$HOME/screenshots"

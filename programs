@@ -26,3 +26,7 @@ libc-dev-bin
 python3-pip
 
 tmux
+gnupg2
+gnupg-agent
+pcscd
+scdaemon

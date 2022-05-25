@@ -74,6 +74,11 @@ interval=2
 label=
 interval=5
 
+# DOCKER
+#[docker]
+#label=
+#interval=1
+
 # Bluetooth
 [bluetooth]
 label=

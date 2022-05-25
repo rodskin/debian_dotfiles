@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+DOCKER_COUNT=$(docker ps -q $1 | wc -l &)
+ICON="D"
+COLOR=""
+if [ "$DOCKER_COUNT" -gt 0 ]; then
+    COLOR=' foreground="#0DB7ED"'
+    ICON="D"
+fi
+echo "<span$COLOR>$ICON $DOCKER_COUNT</span>"
+
+if [ ! -z "$BLOCK_BUTTON" ]; then
+    if [ "$DOCKER_COUNT" -gt 0 ]; then
+        rxvt --hold -e docker ps &
+    fi
+fi

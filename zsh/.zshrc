@@ -50,3 +50,7 @@ source $DOTFILES/zsh/scripts.sh
 
 eval $(thefuck --alias)
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+export GPG_TTY="$(tty)"
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent

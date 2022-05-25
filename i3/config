@@ -194,6 +194,8 @@ focus_follows_mouse no
 set $i3lockwall sh ~/.config/i3/scripts/lock.sh
 bindsym $mod+CTRL+Shift+l exec --no-startup-id $i3lockwall
 
+
+
 # shutdown / restart / suspend...
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Ctrl+s) shutdown
 
@@ -266,3 +268,5 @@ exec --no-startup-id dunst
 
 # Remap Caps Lock key when external keyboard is plugged
 bindsym $mod+z exec "setxkbmap -option 'caps:ctrl_modifier';xcape -e 'Caps_Lock=Escape' &"
+# printscreen
+bindsym --release $mod+p exec --no-startup-id "scrot --line style=solid,width=2,color='red' --select '%Y-%m-%d_%H:%M:%S_$wx$h.png' -e 'mv $f ~/screenshots/'"
