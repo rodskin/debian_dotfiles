@@ -11,6 +11,7 @@
     addignore = "!f() { echo $1 >> .gitignore; }; f"
     untrack = !git update-index --assume-unchanged
     track = !git update-index --no-assume-unchanged
+	root = rev-parse --show-toplevel
 [user]
 	name = fgilles
 	email = fgilles@corp.free.fr

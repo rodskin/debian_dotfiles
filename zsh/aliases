@@ -46,8 +46,22 @@ alias ubdr="sudo do-release-upgrade"
 alias vup="sudo wg-quick up ~/vpn/dbpn.conf"
 alias vdn="sudo wg-quick down ~/vpn/dbpn.conf"
 
+alias bright="xrandr --output HDMI-2 --brightness $1"
 
 alias devp="cd ~/dev/php/free"
+
+alias cal="sh ~/old_pc/fgilles/.dotfiles/i3status/click_time.sh"
+
 source $DOTFILES/zsh/functions
+
+#### GIT ####
+GITLG_OPTIONS="--graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ad)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' "
+alias gitlg="git log $GITLG_OPTIONS"
+alias gitlga="gitlg --all"
+alias_gitdifftool="git -c diff.tool=vimdiff -c difftool.prompt=true -c difftool.vimdiff.cmd='vim -d \$LOCAL \$REMOTE' difftool"
+alias gitmergetool="git -c mergetool.keepBackup=false -c merge.tool=diffconflicts -c mergetool.diffconflicts.cmd='/usr/bin/env bash ~/bin/diffconflicts vim \$BASE \$LOCAL \$REMOTE \$MERGED && echo \"<ctrl+c> to abort, <enter> to continue...\" && read' mergetool"
+alias gitdifftool="$alias_gitdifftool"
+alias groot="git rev-parse --show-toplevel"
+alias gogroot='cd "./$(git rev-parse --show-cdup)"'
 
 source $DOTFILES/zsh/private_aliases

@@ -32,10 +32,10 @@ bindkey -M vicmd v edit-command-line
 
 source ~/dotfiles/zsh/external/bd.zsh
 
-#if [ $(command -v "fzf") ]; then
-#    source /usr/share/fzf/completion.zsh
-#    source /usr/share/fzf/key-bindings.zsh
-#fi
+if [ $(command -v "fzf") ]; then
+    source /usr/share/fzf/completion.zsh
+    source /usr/share/fzf/key-bindings.zsh
+fi
 
 if [ "$(tty)" = "/dev/tty1" ];
 then

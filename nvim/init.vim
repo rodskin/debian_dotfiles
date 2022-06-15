@@ -9,6 +9,8 @@ noremap <Left> <Nop>
 noremap <Right> <Nop>
 
 set noswapfile
+set ignorecase
+set smartcase
 
 " save undo trees in files
 set undofile
@@ -65,3 +67,6 @@ set showmatch " show matching brackets/parenthesis
 " file
 set encoding=UTF-8
 set fileencoding=UTF-8
+
+" suppression du highligh de recherche sur ESC
+map <esc> :noh <CR>
