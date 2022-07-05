@@ -68,5 +68,8 @@ set showmatch " show matching brackets/parenthesis
 set encoding=UTF-8
 set fileencoding=UTF-8
 
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
+
 " suppression du highligh de recherche sur ESC
 map <esc> :noh <CR>

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Copyright (C) 2014 Julien Bonjean 
 
 # This program is free software: you can redistribute it and/or modify
@@ -14,77 +14,55 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see .
 
-INSTANCE="${1:-BAT0}"
-ALERT_LOW="${2:-25}" # color will turn red under this value (default: 10%)
-UPOWER="/usr/bin/upower"
+INSTANCE="BAT0"
 
-if [ ! -x "$UPOWER" ]; then
-	echo "upower not found"
-	exit 1
+BATTERY_FULL="#00FF00"
+BATTERY_CHARGING="#EEE600"
+BATTERY_DEPLETING="#7EA3A3"
+BATTERY_LOW="#CC6666"
+
+BATTERY_CAPACITY=`cat /sys/class/power_supply/$INSTANCE/capacity | tr -dc '0-9'`
+BATTERY_STATUS=`cat /sys/class/power_supply/$INSTANCE/status`
+
+BATTERY_SHOWN=''
+
+# check bluetooth for mouse for exemple
+bluetooth_status=`hciconfig | grep 'UP'`
+if [ ! -z "$bluetooth_status" ]; then
+    MOUSE="MX Master 3"
+    uuid=`bluetoothctl paired-devices | cut -f2 -d' '`
+    info=`bluetoothctl info $uuid`
+    if echo "$info" | grep -q "Connected: yes" && echo "$info" | grep -q "Name: $MOUSE"; then
+        MOUSE_BATTERY=`dbus-send --print-reply=literal --system --dest=org.bluez /org/bluez/hci0/dev_DE_F3_F0_4E_02_D2 org.freedesktop.DBus.Properties.Get string:"org.bluez.Battery1" string:"Percentage" | tr -dc '0-9'`
+
+        if [[ "$MOUSE_BATTERY" -eq 100 ]]; then
+            BATTERY_COLOR="$BATTERY_FULL"
+        elif [[ "$MOUSE_BATTERY" < 20 ]]; then
+            BATTERY_COLOR="$BATTERY_LOW"
+        else
+            BATTERY_COLOR="$BATTERY_DEPLETING"
+        fi
+        BATTERY_SHOWN="<span foreground=\"$BATTERY_COLOR\"> ${MOUSE_BATTERY}%</span> "
+    fi
 fi
-#echo "<span background=\"red\" foreground=\"white\">Salut</span>"
 
-$UPOWER -i /org/freedesktop/UPower/devices/battery_$INSTANCE |
-	awk -v alert_low=$ALERT_LOW '
-/state:/ {
-	state = $2
-}
-/time to full:/ {
-	remaining_time = $4 " " substr ($5, 0, 1)
-}
-/time to empty:/ {
-	remaining_time = $4 " " substr ($5, 0, 1)
-}
-/percentage:/ {
-	percentage = $2;
-}
-END {
-	if (state == "charging")
-        label = ""
-	else if (percentage == "100%")
-		label = ""
-	else if (percentage > 99)
-		label = ""
-	else if (percentage > 75)
-		label = ""
-	else if (percentage > 50)
-		label = ""
-	else if (percentage > 25)
-		label = ""
-    else if (percentage > 10) 
-		label = ""
-    else if (percentage > 55)  
-		label = ""
-	
-    # full text & "$@" > /dev/null;
-    print label " " percentage
+BATTERY_COLOR="$BATTERY_DEPLETING"
+if [[ $BATTERY_STATUS == "Charging" ]]; then
+    BATTERY_COLOR="$BATTERY_CHARGING"
+    BATTERY_ICON=""
+elif [[ "$BATTERY_CAPACITY" -eq 100 ]]; then
+    BATTERY_COLOR="$BATTERY_FULL"
+    BATTERY_ICON=""
+elif [[  "$BATTERY_CAPACITY" > 75 ]]; then
+    BATTERY_ICON=""
+elif [[  "$BATTERY_CAPACITY" > 50 ]]; then
+    BATTERY_ICON=""
+elif [[  "$BATTERY_CAPACITY" > 25 ]]; then
+    BATTERY_ICON=""
+elif [[  "$BATTERY_CAPACITY" > 10 ]]; then
+    BATTERY_ICON=""
+    BATTERY_COLOR="$BATTERY_LOW"
+fi
+BATTERY_SHOWN="$BATTERY_SHOWN<span foreground=\"$BATTERY_COLOR\">$BATTERY_ICON ${BATTERY_CAPACITY}%</span>"
 
-	# short text
-	print label " " percentage
-
-	# color
-	gsub(/%$/,"",percentage)
-    if (percentage == "100")
-		print "#00FF00"
-    else if (state == "charging" || state == "pending-charge")
-		print "#EEE600"
-    else if (+ percentage < + alert_low)
-        print "#cc6666"
-    else if (percentage < 26)
-        print "#af9f87"
-    else
-        print "#7ea3a3"
-}
-
-'
-
-
-# mouse buttons
-case $BLOCK_BUTTON in
-  3) toggle-dpms ;; # left click, control DPMS 
-  2) toggle-red ;;  # right click, redshift on/off
-  1) getacpi ;; # dialog with battery info
-  5) sudo brightness up ;; 
-  # xbacklight doesn't work with modesetting use brightness script
-  4) sudo brightness down ;; 
-esac
+echo "$BATTERY_SHOWN"

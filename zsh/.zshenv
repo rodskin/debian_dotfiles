@@ -19,4 +19,5 @@ export HISTFILE="$ZDOTDIR/.zhistory"
 export SAVEHIST=10000
 
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/softwares/PhpStorm-221.5921.28/bin:$PATH"
 

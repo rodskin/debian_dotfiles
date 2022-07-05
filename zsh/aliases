@@ -54,6 +54,8 @@ alias cal="sh ~/old_pc/fgilles/.dotfiles/i3status/click_time.sh"
 
 source $DOTFILES/zsh/functions
 
+alias yubikey="gpg-connect-agent killagent /bye && gpg-connect-agent /bye && ssh-add -L && gpg-connect-agent updatestartuptty /bye && ssh-add -L"
+
 #### GIT ####
 GITLG_OPTIONS="--graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ad)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' "
 alias gitlg="git log $GITLG_OPTIONS"
@@ -63,5 +65,6 @@ alias gitmergetool="git -c mergetool.keepBackup=false -c merge.tool=diffconflict
 alias gitdifftool="$alias_gitdifftool"
 alias groot="git rev-parse --show-toplevel"
 alias gogroot='cd "./$(git rev-parse --show-cdup)"'
+
 
 source $DOTFILES/zsh/private_aliases

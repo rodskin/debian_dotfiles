@@ -16,6 +16,13 @@ call plug#begin("$XDG_CONFIG_HOME/nvim/plugged")
     Plug 'itchyny/lightline.vim'
     Plug 'powerline/fonts'
     Plug 'chrisbra/SudoEdit.vim'
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'beeender/Comrade'
+
+        " Required for vim 8
+    Plug 'roxma/vim-hug-neovim-rpc'
+    " Install this plugin
+    Plug 'roxma/nvim-yarp', { 'do': 'pip install -r requirements.txt' }
 call plug#end()
 
 "Plug 'sjl/gundo.vim'

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import os
+import re
 from epicstore_api import EpicGamesStoreAPI, OfferData
 
 api = EpicGamesStoreAPI()
@@ -17,6 +18,9 @@ for free_data in free['data']['Catalog']['searchStore']['elements']:
     if type(free_data['promotions']) is dict:
         if len(free_data['promotions']['promotionalOffers']) == 1:
             game_name = free_data['title']
+            game_name = re.sub('[^a-zA-Z0-9 ]+', '', game_name)
+            game_name = re.sub(' +', ' ', game_name)
+
             if game_name not in dictionary:
                 print(game_name, end='')
                 quit()

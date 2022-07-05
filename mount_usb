@@ -1,0 +1,5 @@
+sudo fdisk -l
+sudo mkdir /media/USB
+sudo mount /dev/sda1 /media/USB -o umask=000
+
+sudo umount /media/USB
