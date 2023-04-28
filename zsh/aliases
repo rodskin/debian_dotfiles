@@ -1,0 +1,77 @@
+alias ll="ls -alh"
+alias rm="rm -i"
+alias mv="mv -i"
+alias cp="cp -i"
+if [[ "$(ls --version >/dev/null 2>&1 && echo '1' || echo '0')" == "1" ]]; then
+    if [[ "$(ls --group-directories-first /tmp >/dev/null 2>&1 && echo '1' || echo '0')" == "1" ]]; then
+        alias ll="ls -alh --color=auto --group-directories-first "
+    else
+        alias ll="ls -alh --color=auto "
+    fi
+else
+    alias ll="ls -alhG "
+fi
+alias vi="nvim"
+alias git="git -c color.ui=auto"
+alias ga='git add'
+alias gc='git commit'
+alias gp='git push'
+alias gs="git status --short"
+alias vpn="sudo wg-quick up ~/vpn/dbpn.conf"
+alias ag="ag -Us --ignore='*.min.js' --ignore='*.min.css' --ignore='/cache/' --ignore='/tmp/' "
+alias grep="grep --color"
+if [ "$(which wp-cli 2>/dev/null)" != "" ]; then
+    alias wp="wp-cli"
+fi
+alias curdate='date +%Y%m%d%H%M%S'
+alias mysql="mysql --show-warnings --auto-rehash "
+alias generate_password="openssl rand -base64 37 | cut -c1-16"
+alias generate_strong_password="head -n 999 /dev/urandom | grep -ao '[[:graph:]]' | tr -d '\n' | grep -o '^.\{32\}' | head -n 1"
+alias find_latin1_files="find . -type f \( -iname '*.php' -or -iname '*.php3' -or -iname '*.php4' -or -iname '*.php5' -or -iname '*.html' -or -iname '*.shtml' -or -iname '*.htm' -or -iname '*.html' -or -iname '*.inc' -or -iname '*.ini' -or -iname '*.tpl' -or -iname '*.css' -or -iname '*.js' \) -exec bash -c \"file --mime-encoding {} | grep ': iso-8859-1$' | sed 's/: iso-8859-1$//g'\" \;"
+alias find_latin1_files_php="find . -type f -iname '*.php' -exec bash -c \"file --mime-encoding {} | grep ': iso-8859-1$' | sed 's/: iso-8859-1$//g'\" \;"
+alias find_latin1_files_html="find . -type f -iname '*.html' -exec bash -c \"file --mime-encoding {} | grep ': iso-8859-1$' | sed 's/: iso-8859-1$//g'\" \;"
+alias convert_latin1_files_to_utf8="vim \"+set nomore\" \"+bufdo set fileencoding=utf8 | w\" \"+q\" \$(find_latin1_files)"
+alias convert_latin1_files_to_utf8_php="vim \"+set nomore\" \"+bufdo set fileencoding=utf8 | w\" \"+q\" \$(find_latin1_files_php)"
+alias convert_latin1_files_to_utf8_html="vim \"+set nomore\" \"+bufdo set fileencoding=utf8 | w\" \"+q\" \$(find_latin1_files_html)"
+function monip() { echo "# Private"; ALLIPS="$([ -x /bin/ip ] && ip a || /sbin/ifconfig -a)"; echo "$ALLIPS" | grep 'inet ' | grep -v '127.0.0.1' | awk '{print $2}' | sed 's/\/[0-9]*//g' | sort | uniq; echo; echo "# Public"; dig +short myip.opendns.com @208.67.220.220; } # AKA @resolver1.opendns.com
+function mesip() { ALLIPS="$([ -x /bin/ip ] && ip a || /sbin/ifconfig -a)"; echo "$ALLIPS" | grep 'inet ' | grep -v '127.0.0.1' | awk '{print $2}' | sed 's/.*://g' | sed 's/\/[0-9]*//g' | sort | uniq | tr "\\n" " " | sed 's/ $//g' | sed 's/ /\\\|/g'; }
+alias mygit="git config user.name \"Rodskin\" && git config user.email \"rod.gilles@gmail.com\""
+alias ttsobjects="cd ~/.local/share/Tabletop\ Simulator/Saves/Saved\ Objects"
+alias ubins="sudo apt install"
+alias ubupd="sudo apt update"
+alias ubupg="sudo apt upgrade"
+alias ubdupg="sudo apt upgrade --dry-run"
+alias ubcc="sudo apt autoclean && sudo apt autoremove"
+alias ubdr="sudo do-release-upgrade"
+alias vup="sudo wg-quick up ~/vpn/dbpn.conf"
+alias vdn="sudo wg-quick down ~/vpn/dbpn.conf"
+
+alias bright="xrandr --output `xrandr | grep 'primary' | cut -d ' ' -f-1` --brightness $1"
+alias night_mode="xrandr --output `xrandr | grep 'primary' | cut -d ' ' -f-1` --gamma 1.00000000:0.77987699:0.54642268 --brightness 0.7"
+alias day_mode="xrandr --output `xrandr | grep 'primary' | cut -d ' ' -f-1` --gamma 1.0:1.0:1.0 --brightness 1"
+
+alias devp="cd ~/workspace/php/"
+
+alias cal="sh ~/old_pc/fgilles/.dotfiles/i3status/click_time.sh"
+
+source $DOTFILES/zsh/functions
+
+alias yubikey="gpg-connect-agent killagent /bye && gpg-connect-agent /bye && ssh-add -L && gpg-connect-agent updatestartuptty /bye && ssh-add -L"
+alias gitssh='eval "$(ssh-agent -s)" && ssh-add ~/.ssh/github'
+
+#### GIT ####
+GITLG_OPTIONS="--graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ad)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' "
+alias gitlg="git log $GITLG_OPTIONS"
+alias gitlga="gitlg --all"
+alias_gitdifftool="git -c diff.tool=vimdiff -c difftool.prompt=true -c difftool.vimdiff.cmd='vim -d \$LOCAL \$REMOTE' difftool"
+alias gitmergetool="git -c mergetool.keepBackup=false -c merge.tool=diffconflicts -c mergetool.diffconflicts.cmd='/usr/bin/env bash ~/bin/diffconflicts vim \$BASE \$LOCAL \$REMOTE \$MERGED && echo \"<ctrl+c> to abort, <enter> to continue...\" && read' mergetool"
+alias gitdifftool="$alias_gitdifftool"
+alias groot="git rev-parse --show-toplevel"
+alias gogroot='cd "./$(git rev-parse --show-cdup)"'
+alias glast='git diff --name-only HEAD HEAD~1'
+alias gfile="git log -p -s -- $1"
+alias gcomm="git show --name-only $1"
+
+source $DOTFILES/zsh/private_aliases
+
+#alias php="docker container run --rm -v $(pwd):/app/ php:7.4-cli php"

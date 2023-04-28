@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+ICON=""
+COLOR=''
+echo "<span$COLOR>$ICON $(python3 ~/dotfiles/i3/scripts/meteo.py)</span>"

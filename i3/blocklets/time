@@ -1,0 +1,38 @@
+#!/bin/bash
+COLOR=' foreground="#50C878"'
+CLOCK_ICON=""
+
+date_time=$(date "+S%V - %a - %d/%m %H:%M")
+CALENDAR_STRING="$CLOCK_ICON $date_time"
+
+today=$(date +'%Y-%m-%d')
+tomorrow=$(date +'%Y-%m-%d' -d "+2 days") # il faut ajouter j+1 pour que ca marche d'ou le 2 ...
+
+#birthday=`gcalcli agenda ${today} ${tomorrow} | grep -i 'Anniversaire'`
+#train=`gcalcli agenda ${today} ${tomorrow} | grep -i 'Gare'`
+#book=`gcalcli agenda ${today} ${tomorrow} | grep -i 'Books'`
+#jdr=`gcalcli agenda ${today} ${tomorrow} | grep -i 'JDR'`
+#todo=`gcalcli --calendar=Rod agenda ${today} ${tomorrow} | grep 'No Events Found'`
+GCALCLI_EVENTS=`gcalcli agenda ${today} ${tomorrow}`
+
+if [[ $GCALCLI_EVENTS =~ Anniversaire ]]; then
+    CALENDAR_STRING="$CALENDAR_STRING "
+fi
+if [[ $GCALCLI_EVENTS =~ Gare ]]; then
+    CALENDAR_STRING="$CALENDAR_STRING "
+fi
+if [[ $GCALCLI_EVENTS =~ Books ]]; then
+    CALENDAR_STRING="$CALENDAR_STRING "
+fi
+if [[ $GCALCLI_EVENTS =~ JDR ]]; then
+    CALENDAR_STRING="$CALENDAR_STRING "
+fi
+if [[ ! $GCALCLI_EVENTS =~ No[[:space:]]Events[[:space:]]Found ]]; then
+    CALENDAR_STRING="$CALENDAR_STRING "
+fi
+echo "<span$COLOR>$CALENDAR_STRING</span>"
+
+#Buttons Control
+if [ ! -z "$BLOCK_BUTTON" ]; then
+    rxvt --hold -e ~/old_pc/fgilles/.dotfiles/i3status/click_time.sh &
+fi

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Be sure to change the WLAN interface
+ICON=""
+bluetooth_status=`hciconfig | grep 'UP'`
+BG_COLOR=""
+if [ ! -z "$bluetooth_status" ]; then
+    COLOR=' foreground="#0484FC"'
+fi
+echo "<span$COLOR>$ICON</span>"

@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+if [ ! -z "$BLOCK_BUTTON" ]; then
+    vpn_status=`sudo wg`
+    if [ ! -z "$vpn_status" ]; then
+        sudo wg-quick down ~/vpn/dbpn.conf
+    else
+        sudo wg-quick up ~/vpn/dbpn.conf
+    fi
+fi
+ICON=""
+BG_COLOR=""
+vpn_status=`sudo wg`
+if [ ! -z "$vpn_status" ]; then
+    COLOR=' foreground="#E53935"'
+    ICON=""
+fi
+echo "<span$COLOR>$ICON VPN</span>"

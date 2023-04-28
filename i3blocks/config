@@ -1,0 +1,125 @@
+# i3blocks config file
+#
+# Please see man i3blocks for a complete reference!
+# The man page is also hosted at http://vivien.github.io/i3blocks
+#
+# List of valid properties:
+#
+# align
+# color
+# command
+# full_text
+# instance
+# interval
+# label
+# min_width
+# name
+# separator
+# separator_block_width
+# short_text
+# signal
+# urgent
+
+# Global properties
+#
+# The top properties below are applied to every block, but can be overridden.
+# Each block command defaults to the script name to avoid boilerplate.
+command=~/.config/i3/blocklets/$BLOCK_NAME
+separator=true
+separator_block_width= 10
+markup=pango
+align=right
+
+# Epic
+[epic]
+interval=1800
+label=
+
+# RAM usage
+[memory]
+interval=1
+label=
+color=#4CAF50
+
+# CPU Usage
+[cpu_usage]
+label=
+interval=2
+color=#87AFAF
+
+# /home Partition Usage
+[disk-home]
+label=
+interval=30
+color=#586E75
+
+# IP OUT
+[ifaceout]
+interval=5
+label=
+
+# Network Interface IP
+[iface]
+color=#B4B7B4
+interval=1
+label=
+
+# Wi-Fi SSID
+[ssid]
+label=
+interval=2
+
+# VPN
+[vpn]
+label=
+interval=5
+
+# DOCKER
+#[docker]
+#label=
+#interval=1
+
+# Bluetooth
+[bluetooth]
+label=
+interval=5
+
+#Network Bandwidth
+#[bandwidth]
+#interval=1
+#color=#d33682
+
+# Screen brightness
+[brightness]
+label=
+interval=1
+signal=2
+color=#738899
+
+# Date and Time Calendar
+[volume]
+label=
+interval=1
+
+# Meteo
+[meteo]
+label=
+interval=1800
+
+# Date and Time Calendar
+[time]
+label=
+interval=1
+
+# packages updates
+[updates]
+label=
+interval=3600
+
+# Battery level
+[battery]
+interval=10
+
+# Battery level notification
+[batnotify]
+interval=10

@@ -1,0 +1,17 @@
+[
+  {
+    "name": "George",
+    "id": "a very very long field",
+    "email": "george@domain.example"
+  },
+  {
+    "name": "Jack",
+    "id": 18,
+    "email": "jack@domain.example"
+  },
+  {
+    "name": "Joe",
+    "id": 19,
+    "email": "joe@domain.example"
+  }
+]

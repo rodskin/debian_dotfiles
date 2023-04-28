@@ -1,0 +1,375 @@
+#!/bin/sh
+
+########
+# COLORS
+########
+NORMAL="\033[0m"
+RED="\033[0;31m"
+GREEN="\033[0;32m"
+BROWN="\033[0;33m"
+BLUE="\033[0;34m"
+CYAN="\033[0;36m"
+YELLOW="\033[0;33m"
+LIGHT_RED="\033[1;31m"
+LIGHT_GREEN="\033[1;32m"
+LIGHT_BLUE="\033[1;34m"
+LIGHT_YELLOW="\033[1;33m"
+WHITE="\033[1;37m"
+BLACK="\033[0;30m"
+MAGENTA="\033[1;35m"
+LIGHT_CYAN="\033[1;36m"
+LIGHT_GRAY="\033[0;37m"
+GRAY="\033[01;30m"
+BOLD="\033[1m"
+UNDERSCORE="\033[4m"
+REVERSE="\033[7m"
+
+function extract()  	# Handy Extract Program
+{
+	if [ -f $1 ] ; then
+    	case $1 in
+        	*.tar.bz2)   tar xvjf $1 	;;
+        	*.tar.gz)	tar xvzf $1 	;;
+        	*.bz2)   	bunzip2 $1  	;;
+        	*.rar)   	unrar x $1  	;;
+        	*.gz)    	gunzip $1   	;;
+        	*.tar)   	tar xvf $1  	;;
+        	*.tbz2)  	tar xvjf $1 	;;
+        	*.tgz)   	tar xvzf $1 	;;
+        	*.zip)   	unzip $1    	;;
+        	*.Z)     	uncompress $1   ;;
+        	*.7z)    	7z x $1     	;;
+        	*)       	echo "'$1' cannot be extracted via >extract<" ;;
+    	esac
+	else
+    	echo "'$1' is not a valid file!"
+	fi
+}
+
+function manga()
+{
+    /bin/bash $HOME/manga_scans/get_manga $1
+}
+
+# Creates an archive (*.tar.gz) from given directory.
+function maketar() { tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; }
+
+# Creates an archive (*.gz) from given directory.
+function makegzip() { gzip -9 "${1%%/}"  "${1%%/}/"; }
+
+# Create a ZIP archive of a file or folder.
+function makezip() { zip -r "${1%%/}.zip" "$1" ; }
+
+function screen_()
+{
+    if [ -z $1 -o $1 -eq 0 ]; then
+        echo "Spécifiez un entier entre 1 et 100"
+    else
+        if [ $1 -gt 0 -a $1 -le 100 ]; then
+            #calcul=$(($1 / 100 | bc ))
+            calcul=$(( $1/100. ))
+            xrandr --output eDP-1 --brightness $calcul
+            xrandr --output HDMI-2 --brightness $calcul
+        else
+            echo "Spécifiez un entier entre 1 et 100"
+        fi
+    fi
+}
+
+function screenp()
+{
+    if [ -z $1 -o $1 -eq 0 ]; then
+        echo "Spécifiez un entier entre 1 et 100"
+    else
+        if [ $1 -gt 0 -a $1 -le 100 ]; then
+            #calcul=$(($1 / 100 | bc ))
+            calcul=$(( $1/100. ))
+            primary=`xrandr | grep -e " primary [^(]" | sed -e "s/\([A-Z0-9]\+\) connected.*/\1/"`
+            xrandr --output ${primary} --brightness $calcul
+        else
+            echo "Spécifiez un entier entre 1 et 100"
+        fi
+    fi
+}
+
+function screenchoose()
+{
+    if [ -z $1 -o $1 -eq 0 ]; then
+        echo "Spécifiez un entier entre 1 et 100"
+    else
+        if [ $1 -gt 0 -a $1 -le 100 ]; then
+            #calcul=$(($1 / 100 | bc ))
+            calcul=$(( $1/100. ))
+            templist=( $(xrandr | grep -e " connected [^(]" | sed -e "s/\([A-Z0-9]\+\) connected.*/\1/") )
+            primary=`xrandr | grep -e " primary [^(]" | sed -e "s/\([A-Z0-9]\+\) connected.*/\1/"`
+            echo -e "${YELLOW}Which screen to update?${NORMAL}"
+            echo '0: all'
+            i=1
+            for fn in $templist; do
+                screen="$i: $fn"
+                if [ "$fn" = "$primary" ]; then
+                    screen="${screen} (${GREEN}primary${NORMAL})"
+                fi
+                echo "$screen"
+                ((i=i + 1))
+            done
+            read -n
+            screen_chosen=$REPLY
+            if [ "$screen_chosen" -eq 0 ]; then
+                for fn in $templist; do
+                    xrandr --output ${fn} --brightness $calcul
+                done
+            else
+                xrandr --output $templist[$screen_chosen] --brightness $calcul
+            fi
+        else
+            echo "Spécifiez un entier entre 1 et 100"
+        fi
+    fi
+}
+
+function dockercomposename ()
+{
+    echo $(docker inspect -f '{{.Name}}' $(docker-compose ps -q) | cut -c2-)
+}
+
+function dockercomposessh()
+{
+    docker exec -it $(docker inspect -f '{{.Name}}' $(docker-compose ps -q) | cut -c2-) /bin/bash
+}
+
+function dockerlogs()
+{
+    docker logs --follow $(docker inspect -f '{{.Name}}' $(docker-compose ps -q)  | cut -c2-)
+}
+
+function myaliases ()
+{
+    if [ -z $1 ]; then
+        alias
+    else
+    	case $1 in
+        	help) ls -A1 ~/.dotfiles/zsh/zshrc_aliases_* ;;
+        	*) 
+                FILE=~/.dotfiles/zsh/zshrc_aliases_$1
+                if [ -f "$FILE" ]; then
+                    grep 'alias ' $FILE
+                else
+                    ls -A1 ~/.dotfiles/zsh/zshrc_aliases_*
+                fi ;;
+    	esac
+    fi
+    
+}
+
+function splitimage ()
+{
+    OPT_IMAGE="--image"
+    OPT_COLS="--cols"
+    OPT_ROWS="--rows"
+    OPT_OUTPUT="--output"
+
+    IMAGE=""
+    COLS=0
+    ROWS=0
+
+    # parse parameters
+    while [ $# -ne 0 ]
+    do
+        case "$1" in
+            $OPT_IMAGE=*)
+                INDEX=${#OPT_IMAGE}
+                IMAGE="${1:$INDEX+1}"
+                ;;
+            $OPT_COLS=*)
+                INDEX=${#OPT_COLS}
+                COLS="${1:$INDEX+1}"
+                ;;
+            $OPT_ROWS=*)
+                INDEX=${#OPT_ROWS}
+                ROWS="${1:$INDEX+1}"
+                ;;
+            $OPT_OUTPUT=*)
+                INDEX=${#OPT_OUTPUT}
+                OUTPUT="${1:$INDEX+1}/"
+                ;;
+            -h|--help|*)
+                cat <<EOF
+    Découpe une image en lignes et colonnes identiques
+    Usage
+    =====
+        splitimage --image="" --rows=X --cols=Y [--output=""]
+    Options
+    =======
+        $OPT_IMAGE
+            chemin de l'image à découper
+        $OPT_ROWS
+            Nombre de lignes de l'image
+        $OPT_COLS
+            Nombre de colonnes de l'image
+        $OPT_OUTPUT
+            chemin des images finales
+EOF
+                return 1
+                ;;
+        esac
+        shift
+    done
+    if [ -z "$IMAGE" -o "$COLS" -eq 0 -o "$ROWS" -eq 0 ]; then
+        splitimage -h
+        return 0
+    fi
+    convert "$IMAGE" -crop "$COLS"x$ROWS@ +repage +adjoin "$OUTPUT"cutted_%d.png
+}
+
+function imageto64 ()
+{
+    base64 -w 0 "$1" > "$1".base64
+}
+
+function sbash() {
+    case "$1" in
+        -h|--help|"")
+            echo
+            echo -e "\033${TERM_COLOR_LIGHT_RED}Usage: $FUNCNAME <[user@]host> [port]\033${TERM_COLOR_NORMAL}"
+            echo
+                cat <<EOF
+    ssh alias that brings configuration (mainly bash, vim and git) with you when connecting
+EOF
+            return 1
+            ;;
+    esac
+    HOST="$1"
+    PORT=22
+    if [ "$2" != "" ]; then
+        PORT="$2";
+    fi;
+    if [[ "$SBASH_SUFFIX" == "" ]];
+    then
+        SBASH_SUFFIX="$RANDOM"
+        echo "SBASH_SUFFIX=$SBASH_SUFFIX" > /tmp/.bashrc_$SBASH_SUFFIX
+        cat ~/.dotfiles/pa/.bashrc_common >> /tmp/.bashrc_$SBASH_SUFFIX
+        cp -f ~/.dotfiles/pa/.vimrc_common /tmp/.vimrc_$SBASH_SUFFIX
+        cp -f ~/.dotfiles/pa//diffconflicts /tmp/.diffconflicts_$SBASH_SUFFIX
+        chmod 700 /tmp/.{bashrc,vimrc,diffconflicts}_$SBASH_SUFFIX
+    fi
+    #echo -ne "\r."
+    # ask for password only once in a lifetime
+    #SSH_COPY_ID_FAILED=1
+    #for TRYING in 1 2 3
+    #do
+    ssh-copy-id -o ControlMaster=yes -p $PORT $1 2>/dev/null
+    SSH_COPY_ID_FAILED=$?
+    if [ "$SSH_COPY_ID_FAILED" != "0" ]; then
+        echo "ssh-copy-id failed... sorry";
+        #return 1;
+    else
+        echo -ne "\r."
+    fi
+    #done
+    # connect only once for scp
+    scp -P $PORT -Cqp /tmp/.{bashrc,vimrc,diffconflicts}_$SBASH_SUFFIX $1:/tmp/ || return 2;
+    echo -e "\r.."
+    #SBASH_CMD="ionice -c 3 nice bash --rcfile /tmp/.bashrc_$SBASH_SUFFIX ; rm -f /tmp/.{bashrc,vimrc,diffconflicts}_$SBASH_SUFFIX "
+    SBASH_CMD="bash --rcfile /tmp/.bashrc_$SBASH_SUFFIX ; rm -f /tmp/.{bashrc,vimrc,diffconflicts}_$SBASH_SUFFIX "
+    ssh -p $PORT -C -t "$HOST" "$SBASH_CMD"
+    rm -f /tmp/.{bashrc,vimrc,diffconflicts}_$SBASH_SUFFIX
+    unset SBASH_SUFFIX
+}
+
+function pretty_csv ()
+{
+    column -t -s, -n "$@" | less -F -S -X -K
+}
+
+function auth_pwd ()
+{
+    PASSWORD=`pwgen -y1 24`
+    GENERATED=`php -r "echo password_hash('${PASSWORD}', PASSWORD_BCRYPT);"`
+    echo "$PASSWORD => ${GENERATED}"
+}
+
+function get_colors ()
+{
+    for i in {0..31} ; do for j in {0..7} ; do (( x=$i*8+$j )) ; printf "\e[38;5;%dm████ %03d ████  \e[m" $x $x ; done ; printf "\n" ; done
+}
+
+function key_steam ()
+{
+    echo "https://store.steampowered.com/account/registerkey"
+}
+
+function getwifi ()
+{
+    if [ $# -eq 0 ]; then
+        ls /etc/NetworkManager/system-connections/
+    else
+        sudo cat /etc/NetworkManager/system-connections/"$1" | grep psk=
+    fi
+}
+
+function addgitkeep ()
+{
+    find . -type d -empty -not -path "./.git/*" -exec touch {}/.gitkeep \;
+}
+
+function gitclone ()
+{
+    git clone $1 $2
+    url="$1"
+    if [ -z $2 ]; then
+        basename=$(basename $url)
+        git_folder=${basename%.*}
+    else
+        git_folder="$2"
+    fi
+    cd "$git_folder"
+    pattern="(iliad)\.fr"
+    if (! [[ "${url}" =~ ${pattern} ]]); then
+        echo -e "${GREEN} modification pour avoir mes credentials${NORMAL}"
+        mygit
+    fi
+}
+
+function updatephpfixer ()
+{
+    wget https://cs.symfony.com/download/php-cs-fixer-v3.phar -O php-cs-fixer
+    sudo chmod a+x php-cs-fixer
+    sudo mv php-cs-fixer /usr/local/bin/php-cs-fixer
+}
+
+function vman()
+{
+    nvim -c "SuperMan $*"
+
+    if [ "$?" != "0" ]; then
+        echo "No manual entry for $*"
+    fi
+}
+
+function hadolint ()
+{
+    if [ -z $1 ]; then
+        echo -e "${RED}Missing Dockerfile${NORMAL}"
+    else
+        docker run --rm -i hadolint/hadolint < $1
+    fi
+}
+
+function jira ()
+{
+    JIRA_API_ENPOINT='/rest/api/2/search?jql='
+    JIRA_JQL="assignee=$JIRA_USERNAME AND status in (\"A mettre en production\", \"A tester\", \"En attente de mise en production\", \"En cours\", \"Prêt déploiement\") order by status ASC"
+
+    JIRA=`wget --no-check-certificate -q --method GET --timeout=0 --header "Authorization: Basic $(printf '%s:%s' $JIRA_LOGIN $JIRA_TOKEN | base64 -w 0)" "$JIRA_URL$JIRA_API_ENPOINT$JIRA_JQL" -O /tmp/jira`
+
+    jq -r '["ID","KEY", "TITLE", "STATUS"], (.issues[] | [.id, .key, .fields.summary, .fields.status.name]) | @tsv' /tmp/jira | column -ts $'\t'
+}
+
+function wpscan () {
+    if [ -z $1 ]; then
+        echo -e "${RED}Missing URL${NORMAL}"
+    else
+        docker run -it --rm wpscanteam/wpscan --url $1 --enumerate u --random-user-agent --api-token "$WP_SCAN_API"
+    fi
+}

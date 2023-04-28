@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+state=$(amixer -D pulse get Master | egrep 'Left: Playback.*?\[o' | egrep -o '\[o.+\]')
+vol=$(amixer -D pulse get Master | awk -F 'Left:|[][]' 'BEGIN {RS=""}{ print $3 }')
+if [ $state = "[off]" ]; then
+    bg=$bg_inactive
+    TEXT="-"
+    ICON=""
+else
+    if [ $vol = "0%" ]; then
+        ICON=""
+    else
+        ICON=""
+    fi
+    TEXT="$vol"
+fi
+
+echo "<span$COLOR>$ICON $TEXT</span>"

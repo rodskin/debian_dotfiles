@@ -1,0 +1,68 @@
+#!/bin/bash
+# Copyright (C) 2014 Julien Bonjean 
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see .
+
+INSTANCE="BAT0"
+
+BATTERY_FULL="#00FF00"
+BATTERY_CHARGING="#EEE600"
+BATTERY_DEPLETING="#7EA3A3"
+BATTERY_LOW="#CC6666"
+
+BATTERY_CAPACITY=`cat /sys/class/power_supply/$INSTANCE/capacity | tr -dc '0-9'`
+BATTERY_STATUS=`cat /sys/class/power_supply/AC/online`
+
+BATTERY_SHOWN=''
+
+# check bluetooth for mouse for exemple
+#bluetooth_status=`hciconfig | grep 'UP'`
+#if [ ! -z "$bluetooth_status" ]; then
+#    MOUSE="MX Master 3"
+#    uuid=`bluetoothctl paired-devices | cut -f2 -d' '`
+#    info=`bluetoothctl info $uuid`
+#    if echo "$info" | grep -q "Connected: yes" && echo "$info" | grep -q "Name: $MOUSE"; then
+#        MOUSE_BATTERY=`dbus-send --print-reply=literal --system --dest=org.bluez /org/bluez/hci0/dev_DE_F3_F0_4E_02_D2 org.freedesktop.DBus.Properties.Get string:"org.bluez.Battery1" string:"Percentage" | tr -dc '0-9'`
+#
+#        if [[ "$MOUSE_BATTERY" -eq 100 ]]; then
+#            BATTERY_COLOR="$BATTERY_FULL"
+#        elif [[ "$MOUSE_BATTERY" < 20 ]]; then
+#            BATTERY_COLOR="$BATTERY_LOW"
+#        else
+#            BATTERY_COLOR="$BATTERY_DEPLETING"
+#        fi
+#        BATTERY_SHOWN="<span foreground=\"$BATTERY_COLOR\"> ${MOUSE_BATTERY}%</span> "
+#    fi
+#fi
+
+BATTERY_COLOR="$BATTERY_DEPLETING"
+if [[ "$BATTERY_CAPACITY" -eq 100 ]]; then
+    BATTERY_COLOR="$BATTERY_FULL"
+    BATTERY_ICON=""
+elif [[ $BATTERY_STATUS == 1 ]]; then
+    BATTERY_COLOR="$BATTERY_CHARGING"
+    BATTERY_ICON=""
+elif [[  "$BATTERY_CAPACITY" > 75 ]]; then
+    BATTERY_ICON=""
+elif [[  "$BATTERY_CAPACITY" > 50 ]]; then
+    BATTERY_ICON=""
+elif [[  "$BATTERY_CAPACITY" > 25 ]]; then
+    BATTERY_ICON=""
+elif [[  "$BATTERY_CAPACITY" > 10 ]]; then
+    BATTERY_ICON=""
+    BATTERY_COLOR="$BATTERY_LOW"
+fi
+BATTERY_SHOWN="$BATTERY_SHOWN<span foreground=\"$BATTERY_COLOR\">$BATTERY_ICON ${BATTERY_CAPACITY}%</span>"
+
+echo "$BATTERY_SHOWN"

@@ -1,0 +1,10 @@
+#!/bin/bash
+MOUSE="MX Master 3"
+bluetoothctl paired-devices | cut -f2 -d' '|
+while read -r uuid
+do
+    info=`bluetoothctl info $uuid`
+    if echo "$info" | grep -q "Connected: no" && echo "$info" | grep -q "Name: $MOUSE"; then
+       echo "$info" | grep "Name: $MOUSE"
+    fi
+done

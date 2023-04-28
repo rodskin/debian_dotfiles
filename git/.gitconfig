@@ -1,0 +1,24 @@
+[credential]
+    helper = store
+[pull]
+    rebase = false
+[diff]
+    submodule = log
+[status]
+    submoduleSummary = true
+[alias]
+    spush = push --recurse-submodules=on-demand
+    addignore = "!f() { echo $1 >> .gitignore; }; f"
+    untrack = !git update-index --assume-unchanged
+    track = !git update-index --no-assume-unchanged
+	root = rev-parse --show-toplevel
+[user]
+	name = fgilles
+	email = fgilles@corp.free.fr
+[core]
+	excludesfile = ~/dotfiles/git/.gitignore
+	hooksPath = ~/dotfiles/git/hooks
+    pager = "diff-so-fancy | less --tabs=4 -RFX"
+	editor = nvim
+[commit]
+	template = /home/fgilles/dotfiles/git/.gitmessage

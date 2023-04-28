@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+PACKAGES=$(sudo apt-get upgrade --dry-run | grep 'Inst' | wc -l)
+ICON_PACKAGES=""
+#DISTRIBUTION=$(sudo do-release-upgrade -c | grep 'New release' | wc -l)
+#ICON_DISTRIBUTION=""
+COLOR=' foreground="#007F00"'
+if [ "$PACKAGES" -gt 0 ]; then
+    COLOR=' foreground="#FF0000"'
+fi
+
+echo "<span$COLOR>$ICON_PACKAGES: $PACKAGES</span>"

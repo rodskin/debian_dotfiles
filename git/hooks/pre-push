@@ -1,0 +1,22 @@
+#!/bin/bash
+# pre-push
+
+source ~/dotfiles/colors.sh
+
+remote="$1"
+url="$2"
+read oldrev newrev ref
+
+branche=`echo $ref | awk -F ' ' '{print $1}'`
+branche=`echo ${branche//refs\/heads\//}`
+
+IFS="|"
+remotes_to_check=("backoflux${IFS}workspace")
+branches_to_check=("master${IFS}main")
+
+if [[ "${IFS}${remotes_to_check[*]}${IFS}" =~ "${IFS}${remote}${IFS}" ]]; then
+    if [[ ! "${IFS}${branches_to_check[*]}${IFS}" =~ "${IFS}${branche}${IFS}" ]]; then
+        echo -e "${red}seule master ou main peuvent etre déployées${default}"
+        exit 1
+    fi
+fi
