@@ -49,6 +49,9 @@ call plug#begin("$XDG_CONFIG_HOME/nvim/plugged")
     " TERMINAL
     Plug 'akinsho/toggleterm.nvim', {'tag' : '2.*'}
 
+    " GOLANG
+    Plug 'fatih/vim-go'
+
     " COPILOT
     "Plug 'github/copilot.vim'
 call plug#end()
