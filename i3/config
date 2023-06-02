@@ -40,6 +40,10 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
+# printscreen
+bindsym --release $mod+p exec --no-startup-id "scrot --line style=solid,width=2,color='red' --select '%Y-%m-%d_%H:%M:%S_$wx$h.png' -e 'mv $f ~/screenshots/'"
+bindsym --release Print exec --no-startup-id "scrot --line style=solid,width=2,color='red' --select '%Y-%m-%d_%H:%M:%S_$wx$h.png' -e 'mv $f ~/screenshots/'"
+
 # open calculator
 bindsym XF86Calculator exec xcalc
 
@@ -273,5 +277,3 @@ exec --no-startup-id dunst
 # Remap Caps Lock key when external keyboard is plugged
 #bindsym $mod+z exec "setxkbmap -option 'caps:ctrl_modifier';xcape -e 'Caps_Lock=Escape' &"
 bindsym $mod+z exec "setxkbmap -option ctrl:nocaps"
-# printscreen
-bindsym --release $mod+p exec --no-startup-id "scrot --line style=solid,width=2,color='red' --select '%Y-%m-%d_%H:%M:%S_$wx$h.png' -e 'mv $f ~/screenshots/'"
