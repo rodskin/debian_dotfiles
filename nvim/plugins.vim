@@ -52,6 +52,9 @@ call plug#begin("$XDG_CONFIG_HOME/nvim/plugged")
     " GOLANG
     Plug 'fatih/vim-go'
 
+    " Illuminate
+    Plug 'RRethy/vim-illuminate'
+
     " COPILOT
     "Plug 'github/copilot.vim'
 call plug#end()

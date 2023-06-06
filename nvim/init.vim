@@ -66,6 +66,12 @@ augroup filetype_csv
     autocmd BufWritePre *.csv :%UnArrangeColumn
 augroup END
 
+let g:Illuminate_useDeprecated = 1
+augroup illuminate_augroup
+    autocmd!
+    autocmd VimEnter * hi illuminatedCurWord cterm=italic gui=italic
+augroup END
+
 aug i3config_ft_detection
   au!
   au BufNewFile,BufRead ~/.config/i3/config set filetype=i3config
