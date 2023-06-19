@@ -1,3 +1,6 @@
+" NerdTree
+nmap <silent> <F2> :NERDTreeToggle<CR>
+
 " Tagbar
 nmap <F8> :Vista!!<CR>
 

@@ -8,7 +8,7 @@ require("toggleterm").setup{
           return vim.o.columns * 0.4
         end
     end,
-    direction = 'vertical',
+    direction = 'float',
     -- This field is only relevant if direction is set to 'float'
     float_opts = {
         -- The border key is *almost* the same as 'nvim_open_win'

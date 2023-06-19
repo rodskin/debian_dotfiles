@@ -1,18 +1,28 @@
 " Copy all file
 nnoremap <leader>y :call CopyAll()<CR>
+
 " Open Terminal
 nnoremap <leader>t :call OpenVTerm()<CR>
 nnoremap <leader>T :call OpenHTerm()<CR>
+
 " Buffers
 nnoremap <leader>bn :bn<cr> ;buffer next
 nnoremap <leader>tn gt ;new tab
 
+" Word to uppercase
 nnoremap <leader>u g~iw
-" NerdTree
-"map <C-n> :NERDTreeToggle<CR>
-nmap <silent> <F2> :NERDTreeToggle<CR>
+
 " Config for fzf.vim (BONUS :D)
-nnoremap <leader>f :Files<cr>
+nnoremap <leader>f :Files<CR>
+
+" Config for calculation
+nnoremap <leader>a :call Calc()<CR>
+
+" guides indent
+nnoremap <leader>ig :IndentGuidesToggle<CR>
+
+" Show colors
+nnoremap <leader>co :runtime syntax/colortest.vim
 
 " Enable copilot
 " nnoremap <leader>c :Copilot enable<CR>

@@ -85,6 +85,14 @@ let g:deoplete#enable_at_startup = 1
 
 let g:vista_default_executive = 'coc'
 
+" Indent Guides
+let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
+"let g:indent_guides_auto_colors = 1
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
+
+
 
 source ~/dotfiles/nvim/php.vim
 source ~/dotfiles/nvim/coc.vim
