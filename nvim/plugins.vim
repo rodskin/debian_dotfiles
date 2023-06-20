@@ -58,7 +58,11 @@ call plug#begin("$XDG_CONFIG_HOME/nvim/plugged")
     " Calculate (LEADER a)
     Plug 'theniceboy/vim-calc'
 
+    " indent guides
     Plug 'nathanaelkane/vim-indent-guides'
+
+    " lazygit
+    Plug 'kdheepak/lazygit.nvim'
 
     " COPILOT
     "Plug 'github/copilot.vim'

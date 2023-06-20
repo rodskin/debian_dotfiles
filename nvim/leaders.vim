@@ -24,6 +24,9 @@ nnoremap <leader>ig :IndentGuidesToggle<CR>
 " Show colors
 nnoremap <leader>co :runtime syntax/colortest.vim
 
+" setup mapping to call :LazyGit
+nnoremap <silent> <leader>gg :LazyGit<CR>
+
 " Enable copilot
 " nnoremap <leader>c :Copilot enable<CR>
 " nnoremap <leader>d :Copilot disable<CR>
