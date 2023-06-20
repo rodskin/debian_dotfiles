@@ -22,3 +22,6 @@
 	editor = nvim
 [commit]
 	template = /home/fgilles/dotfiles/git/.gitmessage
+[mergetool "nvimdiff4"]
+    # Like "nvimdiff", but always ignore $BASE.
+    cmd = nvim -f -d -c '$wincmd w' -c 'wincmd J' $LOCAL $REMOTE $MERGED

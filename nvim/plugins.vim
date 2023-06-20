@@ -64,6 +64,9 @@ call plug#begin("$XDG_CONFIG_HOME/nvim/plugged")
     " lazygit
     Plug 'kdheepak/lazygit.nvim'
 
+    " Git Diff view
+    Plug 'sindrets/diffview.nvim'
+
     " COPILOT
     "Plug 'github/copilot.vim'
 call plug#end()
