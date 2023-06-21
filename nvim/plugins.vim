@@ -67,6 +67,9 @@ call plug#begin("$XDG_CONFIG_HOME/nvim/plugged")
     " Git Diff view
     Plug 'sindrets/diffview.nvim'
 
+    " Rest console
+    "Plug 'diepm/vim-rest-console'
+
     " COPILOT
     "Plug 'github/copilot.vim'
 call plug#end()

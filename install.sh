@@ -111,3 +111,4 @@ nvim +CocInstall coc-json coc-css coc-html coc-phpls coc-go coc-git coc-pyls +qa
 ########
 # MISC #
 ########
+#sudo vim /etc/docker/daemon.js

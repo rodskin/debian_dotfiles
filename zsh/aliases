@@ -75,3 +75,4 @@ alias gcomm="git show --name-only $1"
 source $DOTFILES/zsh/private_aliases
 
 #alias php="docker container run --rm -v $(pwd):/app/ php:7.4-cli php"
+alias dockerpath="docker info -f '{{ .DockerRootDir}}'"
