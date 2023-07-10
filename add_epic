@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ -n "$1" ]; then
+    echo $1 >> "$HOME/dotfiles/i3/info_files/epic_list.txt"
+    echo "$1 ajouté dans la liste"
+else
+    echo "Epic empty"
+fi
