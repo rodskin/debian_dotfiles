@@ -1,5 +1,6 @@
-let g:dbext_default_profile_PP = 'type=MYSQL:user=napalm:passwd="cocacola\*666":host=172.16.210.81'
+let g:dbext_default_profile_PP = 'type=MYSQL:user="$BDD_PREPROD_USER":passwd="$BDD_PREPROD_PASSWD":host="$BDD_PREPROD_HOST"'
 let g:dbext_default_profile = 'PP'
+let g:dbext_default_window_use_horiz = 0  " Use vertical split
 
 function Query() range
     " use a temp file for result

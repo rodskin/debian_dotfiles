@@ -25,3 +25,5 @@
 [mergetool "nvimdiff4"]
     # Like "nvimdiff", but always ignore $BASE.
     cmd = nvim -f -d -c '$wincmd w' -c 'wincmd J' $LOCAL $REMOTE $MERGED
+[url "ssh://git@gitlab.internal.ftth.iliad.fr:2022/"]
+    insteadOf = https://gitlab.internal.ftth.iliad.fr/

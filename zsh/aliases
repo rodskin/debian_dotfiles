@@ -51,6 +51,7 @@ alias night_mode="xrandr --output `xrandr | grep 'primary' | cut -d ' ' -f-1` --
 alias day_mode="xrandr --output `xrandr | grep 'primary' | cut -d ' ' -f-1` --gamma 1.0:1.0:1.0 --brightness 1"
 
 alias devp="cd ~/workspace/php/"
+alias devg="cd ~/workspace/go/"
 
 alias cal="sh ~/old_pc/fgilles/.dotfiles/i3status/click_time.sh"
 
