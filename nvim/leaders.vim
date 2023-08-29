@@ -2,7 +2,7 @@
 nnoremap <leader>y :call CopyAll()<CR>
 
 " Open Terminal
-nnoremap <leader>t :call OpenVTerm()<CR>
+"nnoremap <leader>t :call OpenVTerm()<CR>
 nnoremap <leader>T :call OpenHTerm()<CR>
 
 " Buffers
@@ -22,10 +22,21 @@ nnoremap <leader>a :call Calc()<CR>
 nnoremap <leader>ig :IndentGuidesToggle<CR>
 
 " Show colors
-nnoremap <leader>co :runtime syntax/colortest.vim
+nnoremap <leader>co :runtime syntax/colortest.vim<CR>
 
 " setup mapping to call :LazyGit
 nnoremap <silent> <leader>gg :LazyGit<CR>
+
+
+" new tab
+nnoremap <silent> <leader>n :tabnew<CR>
+" New vertical split
+nnoremap <silent> <leader>v :vnew<CR>
+" move splits
+nnoremap <silent> <leader>h <c-w>H
+nnoremap <silent> <leader>j <c-w>J
+nnoremap <silent> <leader>k <c-w>K
+nnoremap <silent> <leader>l <c-w>L
 
 " Enable copilot
 " nnoremap <leader>c :Copilot enable<CR>

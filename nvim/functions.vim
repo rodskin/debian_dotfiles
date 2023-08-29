@@ -19,7 +19,7 @@ function! CopyAll()
 endfunc
 
 function! OpenHTerm()
-    :split term://bash
+    :ToggleTerm size=60 direction=horizontal
 endfunc
 
 function! OpenVTerm()
