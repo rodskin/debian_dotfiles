@@ -16,6 +16,10 @@ require("toggleterm").setup{
         -- the 'curved' border is a custom border type
         -- not natively supported but implemented in this plugin.
         border = 'single',
+        highlights = {
+            border = 'Normal',
+            background = 'Normal',
+        },
         -- like `size`, width and height can be a number or function which is passed the current terminal
         width = function(term)
             return math.ceil(vim.o.columns * 0.6)
@@ -23,7 +27,7 @@ require("toggleterm").setup{
         height = function(term)
             return math.ceil(vim.o.lines * 0.7)
         end,
-        winblend = 3,
+        winblend = 0,
     },
 }
 EOF

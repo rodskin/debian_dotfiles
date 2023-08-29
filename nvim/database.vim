@@ -1,6 +1,8 @@
 let g:dbext_default_profile_PP = 'type=MYSQL:user="$BDD_PREPROD_USER":passwd="$BDD_PREPROD_PASSWD":host="$BDD_PREPROD_HOST"'
 let g:dbext_default_profile = 'PP'
 let g:dbext_default_window_use_horiz = 0  " Use vertical split
+let g:dbext_default_window_width = 20
+let g:dbext_default_window_increment = 300
 
 function Query() range
     " use a temp file for result

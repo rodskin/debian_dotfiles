@@ -241,12 +241,12 @@ include ~/dotfiles/i3/config_parts/statusline.conf
 # Terminal scratchpad
 for_window [instance="urxvt_scratchpad"] move to scratchpad, border none
 bindsym $mod+Shift+t [instance="urxvt_scratchpad"] scratchpad show
-exec urxvtc -name urxvt_scratchpad
+exec xfce4-terminal -name urxvt_scratchpad
 
 # htop scratchpad
 for_window [instance="htop_scratchpad"] move to scratchpad, border none
 bindsym $mod+Shift+p [instance="htop_scratchpad"] scratchpad show
-exec urxvtc -name htop_scratchpad -e htop
+exec xfce4-terminal -name htop_scratchpad -e htop
 
 # Screen management
 set $mode_display Config monitor resolution - Default config (d), Work (w), TV-Iliad (t), Home (h)
