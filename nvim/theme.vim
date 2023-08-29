@@ -1,5 +1,5 @@
-colorscheme dracula     " awesome colorscheme
-"colorscheme solarized  " awesome colorscheme
+"colorscheme dracula     " awesome colorscheme
+colorscheme onedark  " awesome colorscheme
 "set background=light
 syntax enable           " enable syntax processing
 set tabstop=4           " number of visual spaces per TAB

@@ -10,6 +10,9 @@ nmap <F5> :ZenMode<CR>
 " suppression du highligh de recherche sur ESC
 map <esc> :noh <CR>
 
+" new tab
+map <silent><c-n> :tabnew<CR>
+
 " Coc.vim
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call ShowDocumentation()<CR>

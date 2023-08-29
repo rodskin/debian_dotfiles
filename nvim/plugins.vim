@@ -13,6 +13,7 @@ call plug#begin("$XDG_CONFIG_HOME/nvim/plugged")
     Plug 'machakann/vim-highlightedyank'
     Plug 'ap/vim-css-color'
     Plug 'dracula/vim', { 'as': 'dracula' }
+    Plug 'joshdick/onedark.vim', { 'as': 'onedark'}
     Plug 'altercation/vim-colors-solarized'
     Plug 'ryanoasis/vim-devicons'
     Plug 'itchyny/lightline.vim'
