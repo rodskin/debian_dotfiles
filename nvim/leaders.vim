@@ -27,6 +27,9 @@ nnoremap <leader>co :runtime syntax/colortest.vim<CR>
 " setup mapping to call :LazyGit
 nnoremap <silent> <leader>gg :LazyGit<CR>
 
+" sql formatting
+xnoremap <silent> <leader>sql :!sqlformat --reindent --keywords upper --identifiers lower -<CR>
+
 
 " new tab
 nnoremap <silent> <leader>n :tabnew<CR>

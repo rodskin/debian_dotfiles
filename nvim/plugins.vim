@@ -1,7 +1,15 @@
 " Plugins
 call plug#begin("$XDG_CONFIG_HOME/nvim/plugged")
+    " Colorschemes
+    Plug 'dracula/vim', { 'as': 'dracula' }
+    Plug 'joshdick/onedark.vim', { 'as': 'onedark'}
+    Plug 'NLKNguyen/papercolor-theme', { 'as': 'papercolor' }
+    Plug 'altercation/vim-colors-solarized', { 'as': 'solarized' }
+
     Plug 'chrisbra/csv.vim'
+    " Bbye allows you to do delete buffers (close files) without closing your windows or messing up your layout.
     Plug 'moll/vim-bbye'
+
     Plug 'simeji/winresizer'
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
@@ -12,9 +20,6 @@ call plug#begin("$XDG_CONFIG_HOME/nvim/plugged")
     Plug 'tpope/vim-commentary'
     Plug 'machakann/vim-highlightedyank'
     Plug 'ap/vim-css-color'
-    Plug 'dracula/vim', { 'as': 'dracula' }
-    Plug 'joshdick/onedark.vim', { 'as': 'onedark'}
-    Plug 'altercation/vim-colors-solarized'
     Plug 'ryanoasis/vim-devicons'
     Plug 'itchyny/lightline.vim'
     Plug 'powerline/fonts'
@@ -68,6 +73,12 @@ call plug#begin("$XDG_CONFIG_HOME/nvim/plugged")
 
     " Git Diff view
     Plug 'sindrets/diffview.nvim'
+
+    " Signify pour voir les dernieres modifs git ?
+    Plug 'mhinz/vim-signify'
+
+    " MySQL formatter
+    Plug 'mpyatishev/vim-sqlformat'
 
     " Rest console
     "Plug 'diepm/vim-rest-console'

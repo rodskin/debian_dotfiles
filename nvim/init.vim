@@ -8,4 +8,5 @@ source ~/dotfiles/nvim/database.vim
 source ~/dotfiles/nvim/shortcuts.vim
 source ~/dotfiles/nvim/leaders.vim
 source ~/dotfiles/nvim/git.vim
+source ~/dotfiles/nvim/vim-go.vim
 source ~/dotfiles/nvim/functions.vim
