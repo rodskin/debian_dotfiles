@@ -20,12 +20,6 @@ export SAVEHIST=10000
 
 export PATH="$HOME/.local/bin/:$HOME/vendors/diff-so-fancy:$PATH"
 
-export JIRA_LOGIN=''
-export JIRA_USERNAME=''
-export JIRA_URL=''
-export JIRA_TOKEN=''
-export WP_SCAN_API=''
-
 if [ -f "$DOTFILES/zsh/.zshenv_private" ]; then
    source "$DOTFILES/zsh/.zshenv_private"
    export ZSH_PRIVATE_LOADED=1

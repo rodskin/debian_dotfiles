@@ -60,6 +60,9 @@ floating_modifier $mod
 #bindsym $mod+Return exec urxvt
 bindsym $mod+Return exec /usr/bin/xfce4-terminal.wrapper
 
+# show Enpass window
+bindsym $mod+Shift+e exec /opt/enpass/Enpass showassistant
+
 # kill focused window
 bindsym $mod+Shift+q kill
 

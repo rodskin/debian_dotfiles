@@ -35,6 +35,8 @@ call plug#begin("$XDG_CONFIG_HOME/nvim/plugged")
     " Whiteroom pour avoir le script en full screen
     Plug 'folke/zen-mode.nvim'
     Plug 'folke/twilight.nvim'
+    
+    Plug 'leafOfTree/vim-project'
 
     " Auto complete
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -51,7 +53,10 @@ call plug#begin("$XDG_CONFIG_HOME/nvim/plugged")
     Plug 'jez/vim-superman'
 
     " DATABASE
-    Plug 'vim-scripts/dbext.vim'
+    "Plug 'vim-scripts/dbext.vim'
+    Plug 'tpope/vim-dadbod'
+    Plug 'kristijanhusak/vim-dadbod-ui'
+    Plug 'kristijanhusak/vim-dadbod-completion'
 
     " TERMINAL
     Plug 'akinsho/toggleterm.nvim', {'tag' : '2.*'}

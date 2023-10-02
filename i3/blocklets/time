@@ -13,7 +13,7 @@ tomorrow=$(date +'%Y-%m-%d' -d "+2 days") # il faut ajouter j+1 pour que ca marc
 #book=`gcalcli agenda ${today} ${tomorrow} | grep -i 'Books'`
 #jdr=`gcalcli agenda ${today} ${tomorrow} | grep -i 'JDR'`
 #todo=`gcalcli --calendar=Rod agenda ${today} ${tomorrow} | grep 'No Events Found'`
-GCALCLI_EVENTS=`gcalcli agenda ${today} ${tomorrow}`
+#GCALCLI_EVENTS=`gcalcli agenda ${today} ${tomorrow}`
 
 if [[ $GCALCLI_EVENTS =~ Anniversaire ]]; then
     CALENDAR_STRING="$CALENDAR_STRING "

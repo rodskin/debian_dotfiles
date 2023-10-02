@@ -35,11 +35,6 @@ xnoremap <silent> <leader>sql :!sqlformat --reindent --keywords upper --identifi
 nnoremap <silent> <leader>n :tabnew<CR>
 " New vertical split
 nnoremap <silent> <leader>v :vnew<CR>
-" move splits
-nnoremap <silent> <leader>h <c-w>H
-nnoremap <silent> <leader>j <c-w>J
-nnoremap <silent> <leader>k <c-w>K
-nnoremap <silent> <leader>l <c-w>L
 
 " Enable copilot
 " nnoremap <leader>c :Copilot enable<CR>
