@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-PACKAGES=$(sudo apt-get upgrade --dry-run | grep 'Inst' | wc -l)
+PACKAGES=$($DOTFILES/i3/scripts/upgrade_list)
 ICON_PACKAGES=""
 #DISTRIBUTION=$(sudo do-release-upgrade -c | grep 'New release' | wc -l)
 #ICON_DISTRIBUTION=""

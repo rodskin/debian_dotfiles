@@ -26,6 +26,22 @@ function! OpenVTerm()
     :vsplit term://bash
 endfunc
 
+function! XmlFormat()
+    if mode() ==# 'n'  " Mode normal
+        :setf xml | %!xmllint --format -
+    elseif mode() ==# 'v'  " Mode visuel
+        :!xmllint --format -
+    endif
+endfunc
+
+function! SqlFormat()
+    :setf sql | %!sqlformat --reindent --keywords upper --identifiers lower -
+endfunc
+
+function! GetMode()
+    echo mode()
+endfunc
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""" RUN CURRENT FILE """""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -71,4 +87,5 @@ function! RunShellCommand(cmdline)
   setlocal nomodifiable
   1
 endfunction
+
 

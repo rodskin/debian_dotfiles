@@ -24,6 +24,21 @@ BOLD="\033[1m"
 UNDERSCORE="\033[4m"
 REVERSE="\033[7m"
 
+function monip() { 
+    echo "# Private"
+    ALLIPS="$([ -x /bin/ip ] && ip a || /sbin/ifconfig -a)"
+    echo "$ALLIPS" | grep 'inet ' | grep -v '127.0.0.1' | awk '{print $2}' | sed 's/\/[0-9]*//g' | sort | uniq
+    echo
+    echo "# Public"
+    # AKA @resolver1.opendns.com
+    dig +short myip.opendns.com @208.67.220.220
+}
+
+function mesip() { 
+    ALLIPS="$([ -x /bin/ip ] && ip a || /sbin/ifconfig -a)"
+    echo "$ALLIPS" | grep 'inet ' | grep -v '127.0.0.1' | awk '{print $2}' | sed 's/.*://g' | sed 's/\/[0-9]*//g' | sort | uniq | tr "\\n" " " | sed 's/ $//g' | sed 's/ /\\\|/g'
+}
+
 function extract()  	# Handy Extract Program
 {
 	if [ -f $1 ] ; then
@@ -372,4 +387,17 @@ function wpscan () {
     else
         docker run -it --rm wpscanteam/wpscan --url $1 --enumerate u --random-user-agent --api-token "$WP_SCAN_API"
     fi
+}
+
+function strlen ()
+{
+    local concat_args=""  # Récupère le premier argument passé à la fonction
+    for arg in "$@"; do
+        if [ -n "$concat_args" ]; then
+            concat_args="$concat_args $arg"  # Ajoute un espace entre les arguments
+        else
+            concat_args="$arg"
+        fi
+    done
+    echo -n "$concat_args" | wc -m
 }

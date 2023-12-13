@@ -32,6 +32,9 @@ ln -sf "$DOTFILES/nvim/autoload/plug.vim" "$XDG_CONFIG_HOME/nvim/autoload/plug.v
 # Install (or update) all the plugins
 nvim --noplugin +PlugUpdate +qa
 
+# vim-dadbod
+mkdir -p "$HOME"/.db_ui
+
 #######
 # X11 #
 #######

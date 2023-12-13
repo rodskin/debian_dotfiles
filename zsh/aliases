@@ -17,7 +17,6 @@ alias ga='git add'
 alias gc='git commit'
 alias gp='git push'
 alias gs="git status --short"
-alias vpn="sudo wg-quick up ~/vpn/dbpn.conf"
 alias ag="ag -Us --ignore='*.min.js' --ignore='*.min.css' --ignore='/cache/' --ignore='/tmp/' "
 alias grep="grep --color"
 if [ "$(which wp-cli 2>/dev/null)" != "" ]; then
@@ -25,16 +24,16 @@ if [ "$(which wp-cli 2>/dev/null)" != "" ]; then
 fi
 alias curdate='date +%Y%m%d%H%M%S'
 alias mysql="mysql --show-warnings --auto-rehash "
+
 alias generate_password="openssl rand -base64 37 | cut -c1-16"
 alias generate_strong_password="head -n 999 /dev/urandom | grep -ao '[[:graph:]]' | tr -d '\n' | grep -o '^.\{32\}' | head -n 1"
+
 alias find_latin1_files="find . -type f \( -iname '*.php' -or -iname '*.php3' -or -iname '*.php4' -or -iname '*.php5' -or -iname '*.html' -or -iname '*.shtml' -or -iname '*.htm' -or -iname '*.html' -or -iname '*.inc' -or -iname '*.ini' -or -iname '*.tpl' -or -iname '*.css' -or -iname '*.js' \) -exec bash -c \"file --mime-encoding {} | grep ': iso-8859-1$' | sed 's/: iso-8859-1$//g'\" \;"
 alias find_latin1_files_php="find . -type f -iname '*.php' -exec bash -c \"file --mime-encoding {} | grep ': iso-8859-1$' | sed 's/: iso-8859-1$//g'\" \;"
 alias find_latin1_files_html="find . -type f -iname '*.html' -exec bash -c \"file --mime-encoding {} | grep ': iso-8859-1$' | sed 's/: iso-8859-1$//g'\" \;"
 alias convert_latin1_files_to_utf8="vim \"+set nomore\" \"+bufdo set fileencoding=utf8 | w\" \"+q\" \$(find_latin1_files)"
 alias convert_latin1_files_to_utf8_php="vim \"+set nomore\" \"+bufdo set fileencoding=utf8 | w\" \"+q\" \$(find_latin1_files_php)"
 alias convert_latin1_files_to_utf8_html="vim \"+set nomore\" \"+bufdo set fileencoding=utf8 | w\" \"+q\" \$(find_latin1_files_html)"
-function monip() { echo "# Private"; ALLIPS="$([ -x /bin/ip ] && ip a || /sbin/ifconfig -a)"; echo "$ALLIPS" | grep 'inet ' | grep -v '127.0.0.1' | awk '{print $2}' | sed 's/\/[0-9]*//g' | sort | uniq; echo; echo "# Public"; dig +short myip.opendns.com @208.67.220.220; } # AKA @resolver1.opendns.com
-function mesip() { ALLIPS="$([ -x /bin/ip ] && ip a || /sbin/ifconfig -a)"; echo "$ALLIPS" | grep 'inet ' | grep -v '127.0.0.1' | awk '{print $2}' | sed 's/.*://g' | sed 's/\/[0-9]*//g' | sort | uniq | tr "\\n" " " | sed 's/ $//g' | sed 's/ /\\\|/g'; }
 alias mygit="git config user.name \"Rodskin\" && git config user.email \"rod.gilles@gmail.com\""
 alias ttsobjects="cd ~/.local/share/Tabletop\ Simulator/Saves/Saved\ Objects"
 alias ubins="sudo apt install"
@@ -77,3 +76,4 @@ source $DOTFILES/zsh/private_aliases
 
 #alias php="docker container run --rm -v $(pwd):/app/ php:7.4-cli php"
 alias dockerpath="docker info -f '{{ .DockerRootDir}}'"
+alias dockerps='docker ps --format "table {{printf \"\033[32m%s\033[0m\" .ID}}\t{{printf \"\033[33m%s\033[0m\" .Names}}\t{{.Status}}\t{{.Ports}}"'

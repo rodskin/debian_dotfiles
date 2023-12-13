@@ -1,6 +1,7 @@
 source ~/dotfiles/nvim/plugins.vim
 source ~/dotfiles/nvim/theme.vim 
 source ~/dotfiles/nvim/config.vim
+source ~/dotfiles/nvim/nerdtree.vim
 source ~/dotfiles/nvim/php.vim
 source ~/dotfiles/nvim/coc.vim
 source ~/dotfiles/nvim/term.vim
@@ -10,4 +11,5 @@ source ~/dotfiles/nvim/leaders.vim
 source ~/dotfiles/nvim/git.vim
 source ~/dotfiles/nvim/vim-go.vim
 source ~/dotfiles/nvim/tags.vim
+source ~/dotfiles/nvim/startify.vim
 source ~/dotfiles/nvim/functions.vim

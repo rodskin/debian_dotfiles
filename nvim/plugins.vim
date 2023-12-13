@@ -36,7 +36,14 @@ call plug#begin("$XDG_CONFIG_HOME/nvim/plugged")
     Plug 'folke/zen-mode.nvim'
     Plug 'folke/twilight.nvim'
     
+    " Projects
     Plug 'leafOfTree/vim-project'
+    " Plug 'ahmedkhalf/project.vim'
+    " startify
+    Plug 'mhinz/vim-startify'
+
+    " auto rooter
+    Plug 'airblade/vim-rooter'
 
     " Auto complete
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -64,7 +71,7 @@ call plug#begin("$XDG_CONFIG_HOME/nvim/plugged")
     " GOLANG
     Plug 'fatih/vim-go'
 
-    " Illuminate
+    " Illuminate (mettre en surbrillance les chaines identiques)
     Plug 'RRethy/vim-illuminate'
 
     " Calculate (LEADER a)

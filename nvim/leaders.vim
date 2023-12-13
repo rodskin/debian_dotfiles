@@ -30,6 +30,8 @@ nnoremap <silent> <leader>gg :LazyGit<CR>
 " sql formatting
 xnoremap <silent> <leader>sql :!sqlformat --reindent --keywords upper --identifiers lower -<CR>
 
+xnoremap <silent> <leader>xml :call XmlFormat()<CR>
+
 
 " new tab
 nnoremap <silent> <leader>n :tabnew<CR>

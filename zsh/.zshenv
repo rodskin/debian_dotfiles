@@ -19,6 +19,7 @@ export HISTFILE="$ZDOTDIR/.zhistory"
 export SAVEHIST=10000
 
 export PATH="$HOME/.local/bin/:$HOME/vendors/diff-so-fancy:$PATH"
+export PATH="$PATH:/usr/local/go/bin"
 
 if [ -f "$DOTFILES/zsh/.zshenv_private" ]; then
    source "$DOTFILES/zsh/.zshenv_private"

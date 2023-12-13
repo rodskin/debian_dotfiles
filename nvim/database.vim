@@ -21,6 +21,7 @@
 "vmap <F5> :DBExecRangeSQL<CR>
 "vmap <F6> :call Query()<CR>
 
+let g:db_ui_save_location = '~/.db_ui'
 let g:dbs = [
 \ { 'name': 'pp', 'url': "mysql://$BDD_PREPROD_USER:$BDD_PREPROD_PASSWD@$BDD_PREPROD_HOST" },
 \ ]
