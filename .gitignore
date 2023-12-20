@@ -1,2 +1,3 @@
 zsh/.zshenv_private
 zsh/private_aliases
+.env

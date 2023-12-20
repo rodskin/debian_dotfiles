@@ -77,3 +77,5 @@ source $DOTFILES/zsh/private_aliases
 #alias php="docker container run --rm -v $(pwd):/app/ php:7.4-cli php"
 alias dockerpath="docker info -f '{{ .DockerRootDir}}'"
 alias dockerps='docker ps --format "table {{printf \"\033[32m%s\033[0m\" .ID}}\t{{printf \"\033[33m%s\033[0m\" .Names}}\t{{.Status}}\t{{.Ports}}"'
+
+alias gmorft="$DOTFILES/shell_scripts/gmorft"

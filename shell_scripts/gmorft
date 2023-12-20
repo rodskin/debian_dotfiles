@@ -1,0 +1,6 @@
+#!/bin/bash
+ENV_FILE="$DOTFILES/.env"
+if [ -f "$ENV_FILE" ]; then
+    export $(grep -v '^#' "$ENV_FILE" | xargs)
+fi
+curl -H "Content-Type: application/json" -d '{"username": "Lazy-Rod", "content": "Gmorft", "avatar_url": "https://rodskin.cards/avatars/rodskin.jpg"}' "https://discord.com/api/webhooks/$GMORFT_TOKEN"

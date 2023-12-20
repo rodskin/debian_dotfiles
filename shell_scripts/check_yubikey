@@ -1,0 +1,22 @@
+#!/bin/bash
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[94m'
+DEFAULT='\033[0m'
+BOLD='\033[1m'
+
+ICON_KEY=󰯅 
+
+KEY="${BLUE}${ICON_KEY}${DEFAULT}"
+
+echo "pas de yubikey"
+# Vérifiez si la YubiKey est insérée
+if lsusb | grep -q "Yubikey"; then
+  exit 0
+else
+  exit 1
+  echo -e "${KEY} ${RED}${BOLD}AUCUNE YUBIKEY N'EST INSÉRÉE.${DEFAULT} ${KEY}"
+  exit 1
+fi

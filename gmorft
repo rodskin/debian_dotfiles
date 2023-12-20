@@ -1,2 +1,0 @@
-#!/bin/bash
-curl -H "Content-Type: application/json" -d '{"username": "Lazy-Rod", "content": "Gmorft", "avatar_url": "https://rodskin.cards/avatars/rodskin.jpg"}' "https://discord.com/api/webhooks/966725839163109378/zVmEUORz7kcGWvB8HKv9hg3xqYRYFzW6nPRmOKtE6-O5OY_lkh_VIZip_RCa7TkYMbLS"
