@@ -9,6 +9,15 @@
 ctags              
 tags
 .php-cs-fixer.cache
+
+.env
+gin-bin
+
+# docker
+docker-compose.override.yml
+
+# Makefile
+Makefile_override
                    
 # General          
 #log/               

@@ -30,9 +30,12 @@ set foldmethod=indent   " fold based on indent level
 
 " font
 set guifont=ProggyCleanTT\ 12
+set guifont=Hack\ 12
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
 set signcolumn=yes
+
+set mouse=
 
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>

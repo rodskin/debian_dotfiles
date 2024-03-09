@@ -70,6 +70,7 @@ call plug#begin("$XDG_CONFIG_HOME/nvim/plugged")
 
     " GOLANG
     Plug 'fatih/vim-go'
+    Plug 'meain/vim-jsontogo'
 
     " Illuminate (mettre en surbrillance les chaines identiques)
     Plug 'RRethy/vim-illuminate'
@@ -94,6 +95,12 @@ call plug#begin("$XDG_CONFIG_HOME/nvim/plugged")
 
     " Rest console
     "Plug 'diepm/vim-rest-console'
+
+    " http
+    "Plug 'BlackLight/nvim-http'
+    "Plug 'aquach/vim-http-client'
+    "Plug 'diepm/vim-rest-console'
+    Plug 'bayne/vim-dot-http'
 
     " COPILOT
     "Plug 'github/copilot.vim'

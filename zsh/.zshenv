@@ -25,3 +25,6 @@ if [ -f "$DOTFILES/zsh/.zshenv_private" ]; then
    source "$DOTFILES/zsh/.zshenv_private"
    export ZSH_PRIVATE_LOADED=1
 fi
+
+
+export PATH="$PATH:/opt/nvim-linux64/bin"

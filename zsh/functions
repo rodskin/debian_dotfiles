@@ -389,6 +389,10 @@ function wpscan () {
     fi
 }
 
+function stopdocker () {
+    docker stop $(docker ps -a -q)
+}
+
 function strlen ()
 {
     local concat_args=""  # Récupère le premier argument passé à la fonction
@@ -400,4 +404,13 @@ function strlen ()
         fi
     done
     echo -n "$concat_args" | wc -m
+}
+
+function updatenvim ()
+{
+    curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+    sudo rm -rf /opt/nvim
+    sudo tar -C /opt -xzf nvim-linux64.tar.gz
+    rm nvim-linux64.tar.gz
+    echo "NVIM updated $(nvim --version)"
 }
