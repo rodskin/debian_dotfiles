@@ -11,6 +11,7 @@ return {
 					return vim.o.columns * 0.4
 				end
 			end,
+      direction = 'float',
 			autochdir = false, -- when neovim changes it current directory the terminal will change it's own when next it's opened
 			auto_scroll = true, -- automatically scroll to the bottom on terminal output
 			-- This field is only relevant if direction is set to 'float'
@@ -25,5 +26,8 @@ return {
 		})
 
 		vim.keymap.set("n", "<C-T>", '<Cmd>exe v:count1 . "ToggleTerm"<CR>')
+      vim.cmd(
+        'autocmd! TermEnter term://*toggleterm#* tnoremap <silent><c-t> <Cmd>exe v:count1 . "ToggleTerm"<CR>'
+      )
 	end,
 }
