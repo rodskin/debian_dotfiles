@@ -31,11 +31,27 @@ return {
     config = function()
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
       local lspconfig = require("lspconfig")
+      --local on_attach = require("plugins.configs.lspconfig").on_attach
+      local util = require "lspconfig/util"
+
       lspconfig.lua_ls.setup({
         capabilities = capabilities,
       })
       lspconfig.gopls.setup({
         capabilities = capabilities,
+        --on_attach = on_attach,
+        cmd = { "gopls" },
+        filetypes = { "go", "gomod", "gowork", "gotmpl" },
+        root_dit = util.root_pattern("go.work", "go.mod", ".git"),
+        settings = {
+          gopls = {
+            completeUnimported = true,
+            usePlaceholders = true,
+            analyses = {
+              unusedparams = true,
+            }
+          },
+        },
       })
 
       -- shortcuts

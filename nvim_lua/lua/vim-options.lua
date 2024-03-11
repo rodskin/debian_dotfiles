@@ -8,6 +8,9 @@ vim.opt.mouse = ""    --desactivation souris
 vim.opt.termguicolors = true
 vim.opt.ignorecase = true
 
+--#regionopen splits on Rightpanel
+vim.cmd("set splitright")
+
 vim.wo.number = true
 vim.wo.relativenumber = true
 
