@@ -25,9 +25,9 @@ return {
 			},
 		})
 
-		vim.keymap.set("n", "<C-T>", '<Cmd>exe v:count1 . "ToggleTerm"<CR>')
+		vim.keymap.set("n", "<C-P>", '<Cmd>exe v:count1 . "ToggleTerm"<CR>')
       vim.cmd(
-        'autocmd! TermEnter term://*toggleterm#* tnoremap <silent><c-t> <Cmd>exe v:count1 . "ToggleTerm"<CR>'
+        'autocmd! TermEnter term://*toggleterm#* tnoremap <silent><c-p> <Cmd>exe v:count1 . "ToggleTerm"<CR>'
       )
 	end,
 }

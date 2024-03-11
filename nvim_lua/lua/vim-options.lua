@@ -20,13 +20,16 @@ vim.keymap.set("n", "<C-J>", "<C-W>j")
 vim.keymap.set("n", "<C-L>", "<C-W>l")
 
 -- deplacements mode insert
-vim.keymap.set({ "i" }, "<C-K>", "<Up>")
-vim.keymap.set({ "i" }, "<C-H>", "<Left>")
-vim.keymap.set({ "i" }, "<C-J>", "<Down>")
-vim.keymap.set({ "i" }, "<C-L>", "<Right>")
+vim.keymap.set({ "i" }, "<A-K>", "<Up>")
+vim.keymap.set({ "i" }, "<A-H>", "<Left>")
+vim.keymap.set({ "i" }, "<A-J>", "<Down>")
+vim.keymap.set({ "i" }, "<A-L>", "<Right>")
 
 -- desactivation des fleches
 vim.keymap.set({ "n", "i" }, "<Up>", "", { noremap = true, silent = true })
 vim.keymap.set({ "n", "i" }, "<Left>", "", { noremap = true, silent = true })
 vim.keymap.set({ "n", "i" }, "<Down>", "", { noremap = true, silent = true })
 vim.keymap.set({ "n", "i" }, "<Right>", "", { noremap = true, silent = true })
+
+-- split horizontal
+vim.keymap.set("n", "<C-w>h", "<C-W>s")

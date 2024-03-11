@@ -9,7 +9,7 @@ return {
 				},
 			})
 
-			vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
+			vim.keymap.set("n", "<leader>Lf", vim.lsp.buf.format, {})
 		end,
 	},
 	{
