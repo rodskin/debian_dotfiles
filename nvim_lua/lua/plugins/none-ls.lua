@@ -23,7 +23,10 @@ return {
 			require("mason-null-ls").setup({
 				ensure_installed = {
 					"stylua",
-          "php-cs-fixer"
+          "php-cs-fixer",
+          "xmlformatter",
+          "sql-formatter",
+          "golines"
 				},
 			})
 		end,

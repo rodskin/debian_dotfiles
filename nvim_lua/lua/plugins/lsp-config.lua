@@ -37,6 +37,12 @@ return {
       lspconfig.lua_ls.setup({
         capabilities = capabilities,
       })
+      lspconfig.intelephense.setup({
+        capabilities = capabilities,
+      })
+      lspconfig.lemminx.setup({
+        capabilities = capabilities,
+      })
       lspconfig.gopls.setup({
         capabilities = capabilities,
         --on_attach = on_attach,
