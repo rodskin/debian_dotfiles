@@ -374,9 +374,9 @@ function hadolint ()
 function jira ()
 {
     JIRA_API_ENPOINT='/rest/api/2/search?jql='
-    JIRA_JQL="assignee=$JIRA_USERNAME AND status in (\"A mettre en production\", \"A tester\", \"En attente de mise en production\", \"En cours\", \"Prêt déploiement\") order by status ASC"
+    JIRA_JQL="assignee=$JIRA_USER AND status in (\"A mettre en production\", \"A tester\", \"En attente de mise en production\", \"En cours\", \"Prêt déploiement\") order by status ASC"
 
-    JIRA=`wget --no-check-certificate -q --method GET --timeout=0 --header "Authorization: Basic $(printf '%s:%s' $JIRA_LOGIN $JIRA_TOKEN | base64 -w 0)" "$JIRA_URL$JIRA_API_ENPOINT$JIRA_JQL" -O /tmp/jira`
+    JIRA=`wget --no-check-certificate -q --method GET --timeout=0 --header "Authorization: Basic $(printf '%s:%s' $JIRA_LOGIN $JIRA_API_TOKEN | base64 -w 0)" "$JIRA_DOMAIN$JIRA_API_ENPOINT$JIRA_JQL" -O /tmp/jira`
 
     jq -r '["ID","KEY", "TITLE", "STATUS"], (.issues[] | [.id, .key, .fields.summary, .fields.status.name]) | @tsv' /tmp/jira | column -ts $'\t'
 }

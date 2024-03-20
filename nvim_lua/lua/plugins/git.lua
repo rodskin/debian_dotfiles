@@ -5,7 +5,7 @@ return {
       require("gitsigns").setup()
       vim.keymap.set("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", {})
       vim.keymap.set("n", "<leader>gb", ":Gitsigns toggle_current_line_blame<CR>", {})
-      vim.keymap.set("n", "<leader>gl", ":Gitsigns blame_line<CR>", {})
+      vim.keymap.set("n", "<leader>gs", ":Gitsigns blame_line<CR>", {})
     end,
   },
   {
@@ -26,7 +26,7 @@ return {
       "nvim-lua/plenary.nvim",
     },
     config = function()
-      vim.keymap.set("n", "<leader>l", ":LazyGit<CR>", {})
+      vim.keymap.set("n", "<leader>gl", ":LazyGit<CR>", {})
     end,
   },
 }

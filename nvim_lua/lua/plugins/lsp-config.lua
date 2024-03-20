@@ -43,6 +43,9 @@ return {
       lspconfig.lemminx.setup({
         capabilities = capabilities,
       })
+      lspconfig.sqls.setup({
+        capabilities = capabilities,
+      })
       lspconfig.gopls.setup({
         capabilities = capabilities,
         --on_attach = on_attach,

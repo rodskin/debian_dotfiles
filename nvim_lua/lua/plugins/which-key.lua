@@ -24,7 +24,7 @@ return {
 					h = { "<cmd>Telescope help_tags<cr>", "Help tags" },
 				},
 
-				L = {
+				l = {
 					name = "+LSP",
 					f = { "LSP format" },
 				},

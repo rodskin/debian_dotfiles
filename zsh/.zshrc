@@ -50,6 +50,7 @@ fi
 bindkey -r '^l'
 bindkey -r '^g'
 bindkey -s '^g' 'clear^M'
+#bindkey -s '^g' clear-screen
 
 bindkey -e
 

@@ -1,12 +1,15 @@
 vim.cmd("set expandtab")
-vim.cmd("set tabstop=2")
-vim.cmd("set softtabstop=2")
-vim.cmd("set shiftwidth=2")
+vim.cmd("set tabstop=4")
+vim.cmd("set softtabstop=4")
+vim.cmd("set shiftwidth=4")
 vim.g.mapleader = " " --mapleader
 
 vim.opt.mouse = "" --desactivation souris
 vim.opt.termguicolors = true
 vim.opt.ignorecase = true
+
+-- desactivation du highlight apres ESC
+vim.api.nvim_set_keymap('n', '<Esc>', ':noh<CR>', {noremap = true, silent = true})
 
 --#regionopen splits on Rightpanel
 vim.cmd("set splitright")
