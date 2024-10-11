@@ -1,5 +1,5 @@
 return {
-    {    'echasnovski/mini.nvim', version = false},
+    { "echasnovski/mini.nvim", version = false },
     {
         "folke/which-key.nvim",
         --event = "VeryLazy",
@@ -12,35 +12,39 @@ return {
             -- or leave it empty to use the default settings
             -- refer to the configuration section below
         },
-        --config = function()
-            --local wk = require("which-key")
-            --wk.register({
-                --["<leader>"] = {
-                    --f = {
-                        --name = "+file",
-                        --f = { "<cmd>Telescope find_files<cr>", "Find File" },
-                        --r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
-                        --n = { "<cmd>enew<cr>", "New File" },
-                        --g = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
-                        --b = { "<cmd>Telescope buffers<cr>", "Open buffer" },
-                        --h = { "<cmd>Telescope help_tags<cr>", "Help tags" },
-                    --},
+        config = function()
+            local wk = require("which-key")
+            wk.register({
+                ["<leader>"] = {
+                    f = {
+                        name = "+file",
+                        f = { "<cmd>Telescope find_files<cr>", "Find File" },
+                        r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
+                        n = { "<cmd>enew<cr>", "New File" },
+                        g = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
+                        b = { "<cmd>Telescope buffers<cr>", "Open buffer" },
+                        h = { "<cmd>Telescope help_tags<cr>", "Help tags" },
+                    },
 
-                    --l = {
-                        --name = "+LSP",
-                        --f = { "LSP format" },
-                    --},
+                    L = {
+                        name = "+LSP",
+                        f = { "LSP format" },
+                    },
 
-            --g = {
-              --name = "+Git",
-            --},
+                    h = {
+                        name = "+Harpoon",
+                    },
 
-            --c = {
-              --name= "+Code",
-              --a = { "Action" },
-            --}
-                --},
-            --})
-        --end,
+                    g = {
+                        name = "+Git",
+                    },
+
+                    c = {
+                        name = "+Code",
+                        a = { "Action" },
+                    },
+                },
+            })
+        end,
     },
 }
