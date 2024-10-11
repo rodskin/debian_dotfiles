@@ -299,9 +299,10 @@ function pretty_csv ()
 
 function auth_pwd ()
 {
-    PASSWORD=`pwgen -y1 24`
-    GENERATED=`php -r "echo password_hash('${PASSWORD}', PASSWORD_BCRYPT);"`
-    echo "$PASSWORD => ${GENERATED}"
+    #PASSWORD=`pwgen -y1 24`
+    #GENERATED=`php -r "echo password_hash('${PASSWORD}', PASSWORD_BCRYPT);"`
+    #echo "$PASSWORD => ${GENERATED}"
+    htpasswd -bnBC 10 "$1" "$2"
 }
 
 function get_colors ()
@@ -390,7 +391,8 @@ function wpscan () {
 }
 
 function stopdocker () {
-    docker stop $(docker ps -a -q)
+    #docker stop $(docker ps -a -q)
+    docker ps -a -q | while read id; do echo "Arrêt du conteneur $(docker inspect --format='{{.Name}}' $id | cut -c2-) ($id)"; docker stop $id; done
 }
 
 function strlen ()
@@ -413,4 +415,69 @@ function updatenvim ()
     sudo tar -C /opt -xzf nvim-linux64.tar.gz
     rm nvim-linux64.tar.gz
     echo "NVIM updated $(nvim --version)"
+}
+
+function updatechrome ()
+{
+    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    sudo dpkg -i google-chrome-stable_current_amd64.deb
+    rm -f google-chrome-stable_current_amd64.deb
+}
+
+function jwtdecode ()
+{
+    if [ -z $1 ]; then
+        echo -e "${RED}Missing JWT${NORMAL}"
+    else
+        echo $(echo "$1" | awk -F. '{print $2}' | base64 -d)
+    fi
+}
+
+function track_shipment() {
+    # Variables
+    apiKey="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI0OThiNzkzMC05ODM1LTExZWUtYjA1NC01MzI5NTQxZjIzYTciLCJzdWJJZCI6IjY1NzcyMmQwNmUwYTdkNzgwMWYyZGE5YyIsImlhdCI6MTcwMjMwNjUxMn0.Sm7zfkx1JU7o5rIoc7PK7TZ_Tac0PKvmp0Dylir-cmU"
+    trackingUrl="https://parcelsapp.com/api/v3/shipments/tracking"
+    trackingId="$1"
+    
+    if [ -z "$trackingId" ]; then
+        echo "Usage: track_shipment <trackingId>"
+        return 1
+    fi
+
+    shipments='[
+      {"trackingId": "'$trackingId'", "language": "en", "country": "France"}
+    ]'
+
+    # Initiate tracking request
+    response=$(curl -s -X POST "$trackingUrl" -H "Content-Type: application/json" -d '{"apiKey": "'$apiKey'", "shipments": '$shipments'}')
+    echo "$response" | jq
+}
+
+function gostruct() {
+    db2struct -H "$BDD_PREPROD_HOST" -u "$BDD_PREPROD_USER" -p "$BDD_PREPROD_PASSWD" -d ftth_v3 -t "$1" --gorm
+}
+
+function installlibreoffice() {
+    wget -o $HOME/appImages/libreoffice.AppImage https://appimages.libreitalia.org/LibreOffice-fresh.standard-x86_64.AppImage
+    chmod +x $HOME/appImages/libreoffice.AppImage
+}
+
+function updateprotonpass () {
+    wget "https://proton.me/download/PassDesktop/linux/x64/ProtonPass.deb"
+    monFichier="ProtonPass.deb"
+    urlJson="https://proton.me/download/PassDesktop/linux/x64/version.json"
+
+    # Calculer le sha512sum du fichier
+    sha512=$(sha512sum "$monFichier" | awk '{ print $1 }')
+
+    # Télécharger le fichier JSON avec curl et vérifier la présence du hash
+    if curl -s "$urlJson" | jq -e --arg sha512 "$sha512" '.Releases[].File[].Sha512CheckSum | select(. == $sha512)' > /dev/null 2>&1; then
+        echo "Le hash est présent dans le fichier JSON."
+        sudo dpkg -i "$monFichier"
+    else
+        echo "Le hash n'est pas présent dans le fichier JSON."
+        echo " ERROR "
+    fi
+
+    rm -f "$monFichier"
 }

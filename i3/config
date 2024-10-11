@@ -10,12 +10,16 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod4
+# Use Windows key as $mod
+#set $mod Mod4 
+# Use Alt key as $mod
+set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 #font pango:monospace 8
-font pango:Inconsolata NF 12
+#font pango:Inconsolata NF 12
+font pango:MesloLGM Nerd Font 12
 #font pango:DejaVuSans, FontAwesome 8
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
@@ -28,6 +32,7 @@ font pango:Inconsolata NF 12
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id picom
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -58,16 +63,15 @@ floating_modifier $mod
 
 # start a terminal
 #bindsym $mod+Return exec urxvt
-bindsym $mod+Return exec /usr/bin/xfce4-terminal.wrapper
-
-# show Enpass window
-bindsym $mod+Shift+e exec /opt/enpass/Enpass showassistant
+bindsym $mod+Return exec alacritty
+#bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run -i
+#bindsym $mod+d exec --no-startup-id dmenu_run -i
+bindsym $mod+d exec --no-startup-id rofi -show combi
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -254,10 +258,10 @@ exec xfce4-terminal -name htop_scratchpad -e htop
 # Screen management
 set $mode_display Config monitor resolution - Default config (d), Work (w), TV-Iliad (t), Home (h)
 mode "$mode_display" {
-    bindsym d exec --no-startup-id sh "$HOME/.config/X11/default.sh", mode "default"
-    bindsym w exec --no-startup-id sh "$HOME/.config/X11/work.sh", mode "default"
-    bindsym t exec --no-startup-id sh "$HOME/.config/X11/whiteboard.sh", mode "default"
-    bindsym h exec --no-startup-id sh "$HOME/.config/X11/home.sh", mode "default"
+    bindsym d exec --no-startup-id sh "$HOME/dotfiles/X11/default.sh", mode "default"
+    bindsym w exec --no-startup-id sh "$HOME/dotfiles/X11/work.sh", mode "default"
+    bindsym t exec --no-startup-id sh "$HOME/dotfiles/X11/whiteboard.sh", mode "default"
+    bindsym h exec --no-startup-id sh "$HOME/dotfiles/X11/home.sh", mode "default"
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"

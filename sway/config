@@ -58,7 +58,7 @@ floating_modifier $mod
 
 # start a terminal
 #bindsym $mod+Return exec urxvt
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec kitty
 
 # show Enpass window
 #bindsym $mod+Shift+e exec /opt/enpass/Enpass showassistant

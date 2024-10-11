@@ -26,7 +26,9 @@ return {
           "php-cs-fixer",
           "xmlformatter",
           "sql-formatter",
-          "golines"
+          "golines",
+          "gofumpt",
+          "goimports"
 				},
 			})
 		end,

@@ -13,13 +13,14 @@
 # KEYBOARD #
 ############
 sudo cp "$DOTFILES/keyboard/keyboard" /etc/default/keyboard
+setxkbmap -option "ctrl:swapcaps" # swap caps lock and ctrl
 
 ########
 # nvim #
 ########
 mkdir -p "$XDG_CONFIG_HOME/nvim"
 mkdir -p "$XDG_CONFIG_HOME/nvim/undo"
-ln -sf "$DOTFILES/nvim/init.vim" "$XDG_CONFIG_HOME/nvim"
+#ln -sf "$DOTFILES/nvim/init.vim" "$XDG_CONFIG_HOME/nvim"
 ln -sf "$DOTFILES/nvim_lua/init.lua" "$XDG_CONFIG_HOME/nvim"
 
 # install neovim plugin manager
@@ -102,14 +103,14 @@ mkdir -p "$HOME/screenshots"
 # Php CS Fixer #
 ################
 # https://github.com/FriendsOfPHP/PHP-CS-Fixer/blob/master/doc/installation.rst
-wget https://cs.symfony.com/download/php-cs-fixer-v3.phar -O php-cs-fixer
-sudo chmod a+x php-cs-fixer
-sudo mv php-cs-fixer /usr/local/bin/php-cs-fixer
-
+#wget https://cs.symfony.com/download/php-cs-fixer-v3.phar -O php-cs-fixer
+#sudo chmod a+x php-cs-fixer
+#sudo mv php-cs-fixer /usr/local/bin/php-cs-fixer
+#
 ##########
 # NodeJS #
 ##########
-nvim +CocInstall coc-json coc-css coc-html coc-phpls coc-go coc-git coc-pyls +qa
+#nvim +CocInstall coc-json coc-css coc-html coc-phpls coc-go coc-git coc-pyls +qa
 
 
 ########

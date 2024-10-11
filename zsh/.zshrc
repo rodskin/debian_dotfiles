@@ -12,7 +12,7 @@ zmodload zsh/complist
 
 autoload -Uz compinit; compinit
 _comp_options+=(globdots) # With hidden files
-source ~/dotfiles/zsh/external/completion.zsh
+source $DOTFILES/zsh/external/completion.zsh
 
 autoload -Uz prompt_purification_setup; prompt_purification_setup
 
@@ -35,7 +35,7 @@ setopt PUSHD_SILENT
 #zle -N edit-command-line
 #bindkey -M vicmd v edit-command-line
 
-source ~/dotfiles/zsh/external/bd.zsh
+source $DOTFILES/zsh/external/bd.zsh
 
 if [ $(command -v "fzf") ]; then
     source /usr/share/fzf/completion.zsh
@@ -47,14 +47,17 @@ then
     pgrep i3 || exec startx "$XDG_CONFIG_HOME/X11/.xinitrc"
 fi
 
-bindkey -r '^l'
-bindkey -r '^g'
-bindkey -s '^g' 'clear^M'
+#bindkey -r '^l'
+#bindkey -r '^g'
+#bindkey -s '^g' 'clear^M'
 #bindkey -s '^g' clear-screen
 
 bindkey -e
 
+setxkbmap -option caps:none
+
 source $DOTFILES/zsh/scripts.sh
+. $DOTFILES/zsh/external/z.sh
 
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
@@ -62,3 +65,4 @@ export GPG_TTY="$(tty)"
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent
 
+eval "$(starship init zsh)"

@@ -4,6 +4,7 @@
         "fun",
         "actions",
         "local",
-        "util"
+        "util",
+        "set_active_file_line_number_highlight"
     ]
 }
