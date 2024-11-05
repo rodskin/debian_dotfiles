@@ -36,3 +36,5 @@ vim.keymap.set({ "n", "i", "v" }, "<Right>", "", { noremap = true, silent = true
 -- split horizontal
 vim.keymap.set("n", "<C-w>h", "<C-W>s")
 
+-- copy to clipboard
+vim.keymap.set("v", "<leader>y", '"+y')

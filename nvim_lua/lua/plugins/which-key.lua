@@ -14,36 +14,25 @@ return {
         },
         config = function()
             local wk = require("which-key")
-            wk.register({
-                ["<leader>"] = {
-                    f = {
-                        name = "+file",
-                        f = { "<cmd>Telescope find_files<cr>", "Find File" },
-                        r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
-                        n = { "<cmd>enew<cr>", "New File" },
-                        g = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
-                        b = { "<cmd>Telescope buffers<cr>", "Open buffer" },
-                        h = { "<cmd>Telescope help_tags<cr>", "Help tags" },
-                    },
-
-                    L = {
-                        name = "+LSP",
-                        f = { "LSP format" },
-                    },
-
-                    h = {
-                        name = "+Harpoon",
-                    },
-
-                    g = {
-                        name = "+Git",
-                    },
-
-                    c = {
-                        name = "+Code",
-                        a = { "Action" },
-                    },
-                },
+            wk.add({
+                -- Files
+                { "<leader>f",  group = "file" }, -- group
+                { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find File",        mode = "n" },
+                { "<leader>fr", "<cmd>Telescope oldfiles<cr>",   desc = "Open Recent File", mode = "n" },
+                { "<leader>fn", desc = "New File" },
+                { "<leader>fg", "<cmd>Telescope live_grep<cr>",  desc = "Live Grep",        mode = "n" },
+                { "<leader>fb", "<cmd>Telescope buffers<cr>",    desc = "Open buffer",      mode = "n" },
+                { "<leader>fh", "<cmd>Telescope help_tags<cr>",  desc = "Help tags",        mode = "n" },
+                -- LSP
+                { "<leader>L",  group = "LSP" },
+                { "<leader>Lf", desc = "LSP format" },
+                -- Harpoon
+                { "<leader>h",  group = "Harpoon" },
+                -- Git
+                { "<leader>g",  group = "Git" },
+                -- Code
+                { "<leader>c",  group = "Code" },
+                { "<leader>ca", desc = "Action" },
             })
         end,
     },
