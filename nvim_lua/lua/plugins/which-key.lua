@@ -17,22 +17,36 @@ return {
             wk.add({
                 -- Files
                 { "<leader>f",  group = "file" }, -- group
-                { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find File",        mode = "n" },
-                { "<leader>fr", "<cmd>Telescope oldfiles<cr>",   desc = "Open Recent File", mode = "n" },
+                { "<leader>ff", desc = "Find File",        mode = "n" },
+                { "<leader>fo", desc = "Open Recent File", mode = "n" },
                 { "<leader>fn", desc = "New File" },
-                { "<leader>fg", "<cmd>Telescope live_grep<cr>",  desc = "Live Grep",        mode = "n" },
-                { "<leader>fb", "<cmd>Telescope buffers<cr>",    desc = "Open buffer",      mode = "n" },
-                { "<leader>fh", "<cmd>Telescope help_tags<cr>",  desc = "Help tags",        mode = "n" },
+                { "<leader>fg", desc = "Live Grep",        mode = "n" },
+                { "<leader>fb", desc = "Open buffer",      mode = "n" },
+                { "<leader>fh", desc = "Help tags",        mode = "n" },
                 -- LSP
-                { "<leader>L",  group = "LSP" },
-                { "<leader>Lf", desc = "LSP format" },
+                { "<leader>l",  group = "LSP" },
+                { "<leader>la", desc = "Action" },
+                { "<leader>lr", desc = "Go to references" },
+                { "<leader>lf", desc = "LSP format" },
+                { "<leader>ld", desc = "Go to definition" },
+                { "<leader>ln", desc = "Go to next error" },
+                { "<leader>lp", desc = "Go to previous error" },
                 -- Harpoon
                 { "<leader>h",  group = "Harpoon" },
                 -- Git
                 { "<leader>g",  group = "Git" },
-                -- Code
-                { "<leader>c",  group = "Code" },
-                { "<leader>ca", desc = "Action" },
+                -- Rest
+                { "<leader>r",  group = "Rest" },
+                { "<leader>rr", desc = "Run HTTP Request" },
+                { "<leader>rx", desc = "Stop HTTP Request" },
+                { "<leader>rv", desc = "Toggle verbose" },
+                { "<leader>rd", desc = "Dry Run" },
+                { "<leader>rf", desc = "Http Client File" },
+                { "<leader>re", desc = "Http Client Env" },
+                -- Json
+                { "<leader>j",  group = "Json" },
+                { "<leader>jf", desc = "Format JSON" },
+                { "<leader>jm", desc = "Minify JSON" },
             })
         end,
     },

@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+if [ ! -z "$BLOCK_BUTTON" ]; then
+    vpn_status=`pgrep -x "openvpn"`
+    if [ ! -z "$vpn_status" ]; then
+        dunstify -u low -h string:x-dunst-stack-tag:vpn "OpenVPN" "TESTING Vaquity arrêté"
+        sudo systemctl stop vaquity.service
+        dunstify -u low -h string:x-dunst-stack-tag:vpn "OpenVPN" "Vaquity arrêté"
+    else
+        sudo systemctl start vaquity.service
+        dunstify -u low -h string:x-dunst-stack-tag:vpn "OpenVPN" "Vaquity démarré"
+    fi
+fi
+
+BG_COLOR=""
+vpn_vaquity=$(ps aux | grep -v grep | grep -w "openvpn")
+if [ ! -z "$vpn_vaquity" ]; then
+    COLOR=' foreground="#4B8D5D"'
+    ICON=""
+else
+    COLOR=""
+    ICON=""
+fi
+echo "<span$COLOR>$ICON Vaquity</span>"

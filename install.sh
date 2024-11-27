@@ -99,14 +99,6 @@ ln -sf "$DOTFILES/khal/config" "$XDG_CONFIG_HOME/khal/config"
 #########
 mkdir -p "$HOME/screenshots"
 
-################
-# Php CS Fixer #
-################
-# https://github.com/FriendsOfPHP/PHP-CS-Fixer/blob/master/doc/installation.rst
-#wget https://cs.symfony.com/download/php-cs-fixer-v3.phar -O php-cs-fixer
-#sudo chmod a+x php-cs-fixer
-#sudo mv php-cs-fixer /usr/local/bin/php-cs-fixer
-#
 ##########
 # NodeJS #
 ##########
@@ -117,3 +109,6 @@ mkdir -p "$HOME/screenshots"
 # MISC #
 ########
 #sudo vim /etc/docker/daemon.js
+
+# Install atuin (history finder)
+curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh

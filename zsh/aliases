@@ -81,3 +81,7 @@ alias dockerps='docker ps --format "table {{printf \"\033[32m%s\033[0m\" .ID}}\t
 alias dockercps='docker container ls --all --filter label=com.docker.compose.project --format "table {{.Label \"com.docker.compose.project\"}}\t{{.Label \"com.docker.compose.service\"}}\t{{printf \"\033[32m%s\033[0m\" .ID}}\t{{printf \"\033[33m%s\033[0m\" .Names}}\t{{.RunningFor}}\t{{.Status}}\t{{.Ports}}\t{{.Networks}}"'
 
 alias gmorft="$DOTFILES/shell_scripts/gmorft"
+
+
+### FZF ###
+source $DOTFILES/zsh/fzf_aliases

@@ -113,7 +113,7 @@ bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
+#bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
@@ -207,6 +207,8 @@ focus_follows_mouse no
 set $i3lockwall sh ~/.config/i3/scripts/lock.sh
 bindsym $mod+CTRL+Shift+l exec --no-startup-id $i3lockwall
 
+# open workspace env
+bindsym $mod+w exec ~/dotfiles/i3/scripts/workspace
 
 
 # shutdown / restart / suspend...
@@ -229,7 +231,8 @@ bindsym $mod+BackSpace mode "$mode_system"
 
 # wallpaper
 #exec --no-startup-id feh --no-fehbg --bg-fill ~/dotfiles/i3/feh/wallpaper.jpg
-exec_always feh --bg-scale $HOME/dotfiles/i3/feh/wallpaper.jpg
+#exec_always feh --bg-scale $HOME/dotfiles/wallpaper/falcon.jpg
+exec_always feh --bg-scale $HOME/dotfiles/wallpaper/stormy_boat.jpg
 
 # floating pop up automatically
 for_window [window_role="pop-up"] floating enable

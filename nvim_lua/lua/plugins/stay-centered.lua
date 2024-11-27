@@ -1,3 +1,4 @@
+-- This plugin is used to keep the cursor in the center of the screen when scrolling.
 return {
     {
   "arnamak/stay-centered.nvim",

@@ -3,15 +3,20 @@ if [ ! -z "$BLOCK_BUTTON" ]; then
     vpn_status=`sudo wg`
     if [ ! -z "$vpn_status" ]; then
         sudo wg-quick down ~/vpn/dbpn.conf
+        dunstify -u low -h string:x-dunst-stack-tag:vpn "WireGuard" "WireGuard arrêté"
     else
         sudo wg-quick up ~/vpn/dbpn.conf
+        dunstify -u low -h string:x-dunst-stack-tag:vpn "WireGuard" "WireGuard démarré"
     fi
 fi
 ICON=""
 BG_COLOR=""
+IP_TEXT=""
 vpn_status=`sudo wg`
 if [ ! -z "$vpn_status" ]; then
     COLOR=' foreground="#E53935"'
     ICON=""
+    IP=`ip a | grep dbpn | grep inet | grep -oP '(?<=inet\s)[0-9.]+'`
+    IP_TEXT=": $IP"
 fi
-echo "<span$COLOR>$ICON VPN</span>"
+echo "<span$COLOR>$ICON VPN$IP_TEXT</span>"

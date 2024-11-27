@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Nom du workspace cible
+WORKSPACE="2"  # Remplacez par le workspace souhaité
+
+# Charger le layout JSON dans le workspace cible
+i3-msg "workspace $WORKSPACE; append_layout ~/dotfiles/i3/workspaces/workspace_2.json"
+
+# Lancer les applications dans les emplacements définis par le layout JSON
+alacritty &
+alacritty &
+alacritty &
+sleep 0.5  # Petit délai pour que les terminaux s'ouvrent correctement
+insomnia &

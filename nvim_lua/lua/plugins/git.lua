@@ -8,9 +8,9 @@ return {
       vim.keymap.set("n", "<leader>gs", ":Gitsigns blame_line<CR>", {})
     end,
   },
-  {
+  --[[ {
     "tpope/vim-fugitive",
-  },
+  }, ]]
   {
     "kdheepak/lazygit.nvim",
     lazy = false,

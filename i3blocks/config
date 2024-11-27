@@ -73,6 +73,10 @@ interval=2
 [vpn]
 label=
 interval=5
+# VPN
+[vpn_vaquity]
+label=
+interval=5
 
 # DOCKER
 #[docker]

@@ -8,8 +8,6 @@ return {
 					null_ls.builtins.formatting.stylua,
 				},
 			})
-
-			vim.keymap.set("n", "<leader>Lf", vim.lsp.buf.format, {})
 		end,
 	},
 	{
@@ -23,12 +21,13 @@ return {
 			require("mason-null-ls").setup({
 				ensure_installed = {
 					"stylua",
-          "php-cs-fixer",
-          "xmlformatter",
-          "sql-formatter",
-          "golines",
-          "gofumpt",
-          "goimports"
+					"jq",
+					"php-cs-fixer",
+					"xmlformatter",
+					"sql-formatter",
+					"golines",
+					"gofumpt",
+					"goimports",
 				},
 			})
 		end,
