@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Nom du workspace cible
-WORKSPACE="2"  # Remplacez par le workspace souhaité
+WORKSPACE="2: "  # Remplacez par le workspace souhaité
 
 # Charger le layout JSON dans le workspace cible
 i3-msg "workspace $WORKSPACE; append_layout ~/dotfiles/i3/workspaces/workspace_2.json"

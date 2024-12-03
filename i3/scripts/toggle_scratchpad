@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Variables passées en arguments
+WINDOW_TITLE=$1      # Le titre de la fenêtre (ex: alacritty_scratchpad)
+COMMAND=$2           # La commande à exécuter si la fenêtre n'existe pas (ex: "alacritty -T alacritty_scratchpad")
+
+# Vérifie si une fenêtre avec ce titre existe
+if i3-msg -t get_tree | grep -q "\"title\":\"$WINDOW_TITLE\""; then
+    # Si la fenêtre existe, la montre depuis le scratchpad
+    i3-msg "[title=\"$WINDOW_TITLE\"] scratchpad show"
+else
+    # Sinon, exécute la commande pour créer la fenêtre
+    eval "$COMMAND" &
+    sleep 0.5  # Attend que la fenêtre se lance
+    # Déplace la fenêtre dans le scratchpad
+    i3-msg "[title=\"$WINDOW_TITLE\"] move scratchpad"
+    i3-msg "[title=\"$WINDOW_TITLE\"] scratchpad show"
+fi
+

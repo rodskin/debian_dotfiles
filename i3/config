@@ -249,14 +249,16 @@ include ~/dotfiles/i3/config_parts/statusline.conf
 
 
 # Terminal scratchpad
-for_window [instance="urxvt_scratchpad"] move to scratchpad, border none
-bindsym $mod+Shift+t [instance="urxvt_scratchpad"] scratchpad show
-exec xfce4-terminal -name urxvt_scratchpad
+for_window [title="alacritty_scratchpad"] move to scratchpad, border none
+#bindsym $mod+Shift+t [title="alacritty_scratchpad"] scratchpad show
+bindsym $mod+Shift+t exec --no-startup-id $HOME/dotfiles/i3/scripts/toggle_scratchpad "alacritty_scratchpad" "alacritty -T alacritty_scratchpad"
+#exec --no-startup-id alacritty -T alacritty_scratchpad
 
 # htop scratchpad
-for_window [instance="htop_scratchpad"] move to scratchpad, border none
-bindsym $mod+Shift+p [instance="htop_scratchpad"] scratchpad show
-exec xfce4-terminal -name htop_scratchpad -e htop
+for_window [title="htop_scratchpad"] move to scratchpad, border none
+#bindsym $mod+Shift+p [title="htop_scratchpad"] scratchpad show
+#exec --no-startup-id alacritty -T htop_scratchpad -e htop
+bindsym $mod+Shift+p exec --no-startup-id $HOME/dotfiles/i3/scripts/toggle_scratchpad "htop_scratchpad" "alacritty -T htop_scratchpad -e htop"
 
 # Screen management
 set $mode_display Config monitor resolution - Default config (d), Work (w), TV-Iliad (t), Home (h)
@@ -297,6 +299,7 @@ include ~/dotfiles/i3/config_parts/design.conf
 #########
 exec --no-startup-id dunst
 
+new_window none
 # Remap Caps Lock key when external keyboard is plugged
 #bindsym $mod+z exec "setxkbmap -option 'caps:ctrl_modifier';xcape -e 'Caps_Lock=Escape' &"
 bindsym $mod+z exec "setxkbmap -option ctrl:nocaps"
