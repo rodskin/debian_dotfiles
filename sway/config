@@ -17,6 +17,12 @@ set $mod Mod4
 #font pango:monospace 8
 font pango:JetBrainsMono Nerd Font 12
 #font pango:DejaVuSans, FontAwesome 8
+input * {
+    xkb_layout us
+    xkb_variant altgr-intl
+    xkb_options caps:none
+}
+
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -32,6 +38,8 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
+
+exec dbus-run-session nautilus --no-desktop
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status

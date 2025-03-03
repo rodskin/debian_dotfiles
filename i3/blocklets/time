@@ -34,5 +34,5 @@ echo "<span$COLOR>$CALENDAR_STRING</span>"
 
 #Buttons Control
 if [ ! -z "$BLOCK_BUTTON" ]; then
-    rxvt --hold -e ~/old_pc/fgilles/.dotfiles/i3status/click_time.sh &
+    alacritty --hold -e ~/old_pc/fgilles/.dotfiles/i3status/click_time.sh
 fi

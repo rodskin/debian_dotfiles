@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+COLOR=' color="#FFFFFF"'
 if [ ! -z "$BLOCK_BUTTON" ]; then
     vpn_status=`sudo wg`
     if [ ! -z "$vpn_status" ]; then

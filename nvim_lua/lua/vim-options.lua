@@ -38,3 +38,16 @@ vim.keymap.set("n", "<C-w>h", "<C-W>s")
 
 -- copy to clipboard
 vim.keymap.set("v", "<leader>y", '"+y')
+
+-- cursorline
+vim.opt.cursorline = true
+vim.api.nvim_set_hl(0, "CursorLine", { bg = "#2D2D2D" })
+vim.api.nvim_create_autocmd({"InsertEnter", "WinLeave"}, {
+    pattern = "*",
+    command = "set nocursorline",
+})
+
+vim.api.nvim_create_autocmd({"InsertLeave", "WinEnter"}, {
+    pattern = "*",
+    command = "set cursorline",
+})

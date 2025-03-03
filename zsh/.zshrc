@@ -13,6 +13,7 @@ zmodload zsh/complist
 autoload -Uz compinit; compinit
 _comp_options+=(globdots) # With hidden files
 source $DOTFILES/zsh/external/completion.zsh
+source $DOTFILES/zsh/external/pacstall.zsh
 
 autoload -Uz prompt_purification_setup; prompt_purification_setup
 
@@ -67,6 +68,6 @@ gpgconf --launch gpg-agent
 
 eval "$(starship init zsh)"
 
-. "$HOME/.atuin/bin/env"
+#. "$HOME/.atuin/bin/env"
+#eval "$(atuin init zsh)"
 
-eval "$(atuin init zsh)"

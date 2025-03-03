@@ -82,6 +82,7 @@ alias dockercps='docker container ls --all --filter label=com.docker.compose.pro
 
 alias gmorft="$DOTFILES/shell_scripts/gmorft"
 
+alias naut='gsettings set org.gnome.desktop.background show-desktop-icons false'
 
 ### FZF ###
 source $DOTFILES/zsh/fzf_aliases

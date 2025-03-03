@@ -1,7 +1,9 @@
 #!/bin/sh
-img=~/i3lock.png
+# Capture l'écran
+grim /tmp/screenshot.png
 
-scrot -o $img
-convert $img -scale 10% -scale 1000% $img
+# Pixélise l'image
+convert /tmp/screenshot.png -scale 10% -scale 1000% /tmp/screenshot_pixelated.png
 
-i3lock -u -i $img
+# Lance swaylock avec l'image pixélisée
+swaylock --image /tmp/screenshot_pixelated.png

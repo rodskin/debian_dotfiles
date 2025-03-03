@@ -1,0 +1,34 @@
+#!/usr/bin/bash
+
+set -e
+
+#img=/tmp/swaylock.png
+
+#grim $img
+#convert $img -scale 10% -scale 1000% $img
+
+#swaylock -e -u -s tile2 -i $img
+
+set -Eueo pipefail
+# lock with safe config on error
+trap "swaylock -feFKc 133337 -C /dev/null" ERR INT
+
+scratch=$(mktemp -d /tmp/lockscreenshot.XXX)
+trap "rm -rf ${scratch}" EXIT
+
+# Build swaylock args
+ARGS="--daemonize"
+
+# Active monitors, not just .focused
+for monitor in $(swaymsg -t get_outputs | jq -r '.[] | select(.active) | .name'); do
+    img="${scratch}/${monitor}.png"
+    {
+        grim -o "${monitor}" "${img}" &&
+            convert "${img}" -scale 7% -scale 1000% "${img}" >/dev/null
+    } &
+    ARGS="$ARGS --image=${monitor}:${img}"
+done
+
+wait # for all screenhots to blur
+
+exec swaylock -e $ARGS

@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+COLOR=' color="#FFFFFF"'
 if [ ! -z "$BLOCK_BUTTON" ]; then
     vpn_status=`pgrep -x "openvpn"`
     if [ ! -z "$vpn_status" ]; then
@@ -17,7 +18,7 @@ if [ ! -z "$vpn_vaquity" ]; then
     COLOR=' foreground="#4B8D5D"'
     ICON=""
 else
-    COLOR=""
+    COLOR=' color="#FFFFFF"'
     ICON=""
 fi
 echo "<span$COLOR>$ICON Vaquity</span>"

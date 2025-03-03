@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+COLOR=" color='#ffffff'"
 state=$(amixer -D pulse get Master | egrep 'Left: Playback.*?\[o' | egrep -o '\[o.+\]')
 vol=$(amixer -D pulse get Master | awk -F 'Left:|[][]' 'BEGIN {RS=""}{ print $3 }')
 if [ $state = "[off]" ]; then

@@ -11,20 +11,9 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 # Use Windows key as $mod
-set $mod Mod4 
+#set $mod Mod4 
 # Use Alt key as $mod
-#set $mod Mod1
-# Home row direction keys, like vim
-set $left h
-set $down j
-set $up k
-set $right l
-
-#Keyboard
-input "type:keyboard" {
-    xkb_layout us
-    xkb_variant altgr-intl
-}
+set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -57,9 +46,8 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # printscreen
-#bindsym --release $mod+p exec --no-startup-id "scrot --line style=solid,width=2,color='red' --select '%Y-%m-%d_%H%M%S_$wx$h.png' -e 'mv $f ~/screenshots/'"
-bindsym Print exec grim -g "$(slurp)" ~/screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png | (sleep 0.1 && wl-copy)
-#bindsym --release $mod+p exec grim -g "$(slurp)" ~/screenshots/screenshot.png
+bindsym --release $mod+p exec --no-startup-id "scrot --line style=solid,width=2,color='red' --select '%Y-%m-%d_%H:%M:%S_$wx$h.png' -e 'mv $f ~/screenshots/'"
+bindsym --release Print exec --no-startup-id "scrot --line style=solid,width=2,color='red' --select '%Y-%m-%d_%H:%M:%S_$wx$h.png' -e 'mv $f ~/screenshots/'"
 
 # open calculator
 bindsym XF86Calculator exec xcalc
@@ -91,10 +79,10 @@ bindsym $mod+d exec --no-startup-id rofi -show combi
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+$left focus left
-bindsym $mod+$down focus down
-bindsym $mod+$up focus up
-bindsym $mod+$right focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 #bindsym $mod+Left focus left
@@ -103,10 +91,10 @@ bindsym $mod+$right focus right
 #bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+$left move left
-bindsym $mod+Shift+$down move down
-bindsym $mod+Shift+$up move up
-bindsym $mod+Shift+$right move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 #bindsym $mod+Shift+Left move left
@@ -216,11 +204,11 @@ bindsym $mod+r mode "resize"
 focus_follows_mouse no
 
 # lock
-set $i3lockwall swaylock --color 000000
-bindsym $mod+CTRL+Shift+l exec $i3lockwall
+set $i3lockwall sh ~/.config/i3/scripts/lock.sh
+bindsym $mod+CTRL+Shift+l exec --no-startup-id $i3lockwall
 
 # open workspace env
-bindsym $mod+w exec ~/dotfiles/i3/scripts/workspaceVim
+bindsym $mod+w exec ~/dotfiles/i3/scripts/workspace
 
 
 # shutdown / restart / suspend...
@@ -244,8 +232,7 @@ bindsym $mod+BackSpace mode "$mode_system"
 # wallpaper
 #exec --no-startup-id feh --no-fehbg --bg-fill ~/dotfiles/i3/feh/wallpaper.jpg
 #exec_always feh --bg-scale $HOME/dotfiles/wallpaper/falcon.jpg
-#exec_always feh --bg-scale $HOME/dotfiles/wallpaper/stormy_boat.jpg
-output * bg $HOME/dotfiles/wallpaper/stormy_boat.jpg fill
+exec_always feh --bg-scale $HOME/dotfiles/wallpaper/stormy_boat.jpg
 
 # floating pop up automatically
 for_window [window_role="pop-up"] floating enable
@@ -300,7 +287,7 @@ bindsym $mod+x mode "$mode_display"
 #exec --no-startup-id insomnia
 
 # COLORS
-#include ~/dotfiles/i3/config_parts/colors.conf
+include ~/dotfiles/i3/config_parts/colors.conf
 
 ##########
 # DESIGN #
@@ -312,8 +299,7 @@ include ~/dotfiles/i3/config_parts/design.conf
 #########
 exec --no-startup-id dunst
 
-#new_window none
-
+new_window none
 # Remap Caps Lock key when external keyboard is plugged
 #bindsym $mod+z exec "setxkbmap -option 'caps:ctrl_modifier';xcape -e 'Caps_Lock=Escape' &"
-#bindsym $mod+z exec "setxkbmap -option ctrl:nocaps"
+bindsym $mod+z exec "setxkbmap -option ctrl:nocaps"

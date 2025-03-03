@@ -28,3 +28,5 @@ fi
 
 
 export PATH="$PATH:/opt/nvim-linux64/bin"
+. "$HOME/.cargo/env"
+export PATH="$PATH:$HOME/.cargo/bin"

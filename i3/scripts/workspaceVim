@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Aller au workspace 2 (remplacez par le numéro de votre choix)
+swaymsg workspace 8
+
+# Lancer la première ligne avec Alacritty
+alacritty & sleep 0.5
+alacritty & sleep 0.5
+swaymsg resize grow width 20 ppt & sleep 0.5
+alacritty & sleep 0.5
+alacritty & sleep 0.5
+
+# Sélectionner la fenêtre et ouvrir Insomnia
+swaymsg split v
+insomnia & sleep 0.5
+swaymsg resize grow height 20 ppt
+
