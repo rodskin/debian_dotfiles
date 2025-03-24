@@ -76,4 +76,11 @@ return {
 			vim.keymap.set("n", "<leader>lp", vim.diagnostic.goto_prev)
 		end,
 	},
+    {
+      "simrat39/symbols-outline.nvim",
+      config = function()
+        require("symbols-outline").setup()
+        vim.keymap.set("n", "<leader>ls", ":SymbolsOutline<CR>", { noremap = true, silent = true })
+      end,
+    },
 }
